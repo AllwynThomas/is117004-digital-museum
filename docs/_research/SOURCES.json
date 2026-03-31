@@ -1,0 +1,201 @@
+{
+  "museum_concept": "Nuclear Energy Generation",
+  "project_positioning": "Pro-nuclear, educational, and visually engaging. The exhibit highlights nuclear energy as a clean, reliable, high-density power source that can help reduce fossil fuel use and support future electricity demand.",
+  "project_goal": "Show how nuclear reactors generate electricity, why nuclear energy is valuable compared with coal, oil, and gas, and why it is increasingly relevant for a low-carbon, high-demand energy future.",
+  "core_messaging": [
+    "Nuclear energy provides reliable 24/7 power.",
+    "Nuclear plants produce very low operational greenhouse gas emissions.",
+    "Nuclear fuel is extremely energy-dense compared with fossil fuels.",
+    "Nuclear power can help stabilize grids and support high electricity demand.",
+    "Nuclear is especially relevant for future loads such as AI data centers."
+  ],
+  "content_themes": [
+    "energy density",
+    "reactor operation",
+    "clean electricity",
+    "grid reliability",
+    "AI data center demand",
+    "fuel cycle",
+    "timeline"
+  ],
+  "primary_sources": [
+    {
+      "id": "uranium_vs_fossil_fuels_diagram",
+      "type": "image",
+      "title": "The Power of a Uranium Pellet Compared to Fossil Fuels",
+      "asset_path": "public/assets/images/uranium_vs_fossil_fuels_diagram.png",
+      "source_url": "https://elements.visualcapitalist.com/the-power-of-a-uranium-pellet/",
+      "recommended_use": "Illustrate the extraordinary energy density of uranium fuel compared with coal, oil, and gas.",
+      "notes": "Good hero image for a pro-nuclear opening section.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "safest_cleanest_sources_chart",
+      "type": "chart",
+      "title": "What are the safest and cleanest sources of energy?",
+      "asset_path": "public/assets/images/safest_cleanest_sources_of_energy_chart.png",
+      "source_url": "https://ourworldindata.org/safest-sources-of-energy",
+      "recommended_use": "Compare deaths and lifecycle emissions across energy sources.",
+      "notes": "Strong evidence visual for nuclear’s safety and climate advantages.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "nuclearplant_animation",
+      "type": "animation",
+      "title": "How a Nuclear Reactor Actually Works",
+      "asset_path": "public/assets/images/nuclearplant.gif",
+      "source_url": "https://www.nei.org/news/2019/how-reactor-actually-works",
+      "recommended_use": "Explain reactor heat generation, steam production, turbine rotation, and electricity production.",
+      "notes": "Best simple animation for understanding the core process of PWR reactor. Of the nation’s 96 reactors, 32 are boiling water reactors, while 64 are pressurized water reactors.",
+      "license_note": "Verify reuse permission before publication."
+    }
+  ],
+  "supporting_sources": [
+    {
+      "id": "nrc_pwr_overview",
+      "type": "reference_page",
+      "title": "Pressurized Water Reactors",
+      "source_url": "https://www.nrc.gov/reactors/power/pwrs",
+      "recommended_use": "Authoritative explanation of how a common reactor type works. ",
+      "notes": "Useful for accurate technical copy and exhibit captions.",
+      "license_note": "Public agency source; verify any graphic reuse terms."
+    },
+    {
+      "id": "nrc_reactor_education",
+      "type": "educational_page",
+      "title": "Unit 3: Nuclear Reactors / Energy Generation",
+      "source_url": "https://www.nrc.gov/reading-rm/basic-ref/students/for-educators/unit3-nuclear-reactors-energy-generation.html",
+      "recommended_use": "General educational overview of nuclear reactor basics and energy generation.",
+      "notes": "Good for simplified visitor-facing explanations.",
+      "license_note": "Public agency source; verify any graphic reuse terms."
+    },
+    {
+      "id": "eia_nuclear_fuel_cycle",
+      "type": "educational_page",
+      "title": "The nuclear fuel cycle",
+      "source_url": "https://www.eia.gov/energyexplained/nuclear/the-nuclear-fuel-cycle.php",
+      "recommended_use": "Explain uranium mining, enrichment, fuel use, and spent fuel handling.",
+      "notes": "Helpful for a lifecycle or fuel-cycle section.",
+      "license_note": "Public agency source; generally suitable for citation and reference."
+    },
+    {
+      "id": "iaea_smart_stable_reliable",
+      "type": "article",
+      "title": "Smart, stable, reliable",
+      "source_url": "https://www.iaea.org/bulletin/smart-stable-reliable",
+      "recommended_use": "Support claims that nuclear can provide stable, low-carbon, 24/7 power and help grids integrate renewables.",
+      "notes": "Especially relevant for reliability and grid stability messaging.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "iaea_clean_energy_pdf",
+      "type": "pdf",
+      "title": "Nuclear Power: Clean Energy",
+      "source_url": "https://www.iaea.org/sites/default/files/2025-09/cleanenergy_0.pdf",
+      "recommended_use": "Support high-level claims about nuclear power’s low emissions and steady supply.",
+      "notes": "Good for a concise sustainability section.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "ourworldindata_nuclear_energy",
+      "type": "data_story",
+      "title": "Nuclear Energy",
+      "source_url": "https://ourworldindata.org/nuclear-energy",
+      "recommended_use": "Generate charts for global generation trends, capacity, and carbon comparisons.",
+      "notes": "Useful for data-driven exhibit sections.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "eia_electric_power_monthly",
+      "type": "data_table",
+      "title": "Electric Power Monthly",
+      "source_url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=table_1_01",
+      "recommended_use": "Create current charts for U.S. electricity generation by source.",
+      "notes": "Ideal for a live or updated data visualization panel.",
+      "license_note": "Public data source; suitable for attribution."
+    },
+    {
+      "id": "deloitte_data_center_nuclear",
+      "type": "industry_analysis",
+      "title": "Nuclear energy's role in powering data center growth",
+      "source_url": "https://www.deloitte.com/us/en/insights/industry/power-and-utilities/nuclear-energy-powering-data-centers.html",
+      "recommended_use": "Support a future-demand section focused on AI data centers and round-the-clock electricity needs.",
+      "notes": "Use as a current industry perspective, not as a primary technical source.",
+      "license_note": "Verify reuse permission before publication."
+    }
+  ],
+  "timeline_sources": [
+    {
+      "id": "iaea_nuclear_power_topic",
+      "type": "topic_overview",
+      "title": "Nuclear Power",
+      "source_url": "https://www.iaea.org/topics/nuclear-power",
+      "recommended_use": "General historical and policy context for nuclear power development.",
+      "notes": "Good anchor source for a timeline narrative.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "world_nuclear_world_energy_needs",
+      "type": "historical_reference",
+      "title": "World Energy Needs and Nuclear Power",
+      "source_url": "https://world-nuclear.org/information-library/current-and-future-generation/world-energy-needs-and-nuclear-power",
+      "recommended_use": "Historical context and future outlook for nuclear in the global energy mix.",
+      "notes": "Useful for milestone framing and long-term trends.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "eia_nuclear_energy_overview_data",
+      "type": "data_source",
+      "title": "Nuclear Energy Overview",
+      "source_url": "https://www.eia.gov/totalenergy/data/browser/index.php?tbl=T08.01",
+      "recommended_use": "Build an interactive timeline of U.S. nuclear generation, capacity, and share of electricity.",
+      "notes": "Best source for a clean chart-based timeline.",
+      "license_note": "Public data source; suitable for attribution."
+    }
+  ],
+  "recommended_exhibit_sections": [
+    {
+      "section_id": "hero",
+      "title": "Why Nuclear Energy Matters",
+      "best_sources": ["uranium_vs_fossil_fuels_diagram", "safest_cleanest_sources_chart"]
+    },
+    {
+      "section_id": "how_it_works",
+      "title": "How a Reactor Makes Electricity",
+      "best_sources": ["nuclearplant_animation", "nrc_pwr_overview", "nrc_reactor_education"]
+    },
+    {
+      "section_id": "benefits",
+      "title": "Why Nuclear Beats Fossil Fuels",
+      "best_sources": ["safest_cleanest_sources_chart", "iaea_clean_energy_pdf", "iaea_smart_stable_reliable"]
+    },
+    {
+      "section_id": "fuel_cycle",
+      "title": "From Uranium to Electricity",
+      "best_sources": ["eia_nuclear_fuel_cycle"]
+    },
+    {
+      "section_id": "future_demand",
+      "title": "Powering AI and the Future Grid",
+      "best_sources": ["deloitte_data_center_nuclear", "iaea_smart_stable_reliable"]
+    },
+    {
+      "section_id": "timeline",
+      "title": "The Rise of Nuclear Power",
+      "best_sources": ["iaea_nuclear_power_topic", "world_nuclear_world_energy_needs", "eia_nuclear_energy_overview_data"]
+    }
+  ],
+  "tone_guidance": [
+    "Use pro-nuclear framing, but keep the language museum-like rather than promotional.",
+    "Emphasize benefits with evidence: reliability, low carbon emissions, fuel efficiency, and grid stability.",
+    "Acknowledge safety and waste honestly, but frame them as engineering and policy challenges that can be managed.",
+    "Avoid anti-fossil-fuel rhetoric that sounds polemical; instead compare measured outcomes like emissions, deaths, and reliability."
+  ],
+  "implementation_notes": [
+    "Prefer public-agency and data sources for factual claims.",
+    "Use your three existing visuals as the centerpiece of the exhibit.",
+    "For timeline visuals, generate charts from EIA and IAEA data rather than relying on static third-party images.",
+    "Always attribute images and charts in the UI.",
+    "Before publishing, verify reuse rights for all non-government assets."
+  ]
+}
