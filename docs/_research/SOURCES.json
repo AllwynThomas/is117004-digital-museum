@@ -16,6 +16,7 @@
     "grid reliability",
     "AI data center demand",
     "fuel cycle",
+    "safety and waste",
     "timeline"
   ],
   "primary_sources": [
@@ -44,9 +45,9 @@
       "type": "animation",
       "title": "How a Nuclear Reactor Actually Works",
       "asset_path": "public/assets/images/nuclearplant.gif",
-      "source_url": "https://www.nei.org/news/2019/how-reactor-actually-works",
+      "source_url": "https://www.nei.org/fundamentals/how-a-nuclear-reactor-works",
       "recommended_use": "Explain reactor heat generation, steam production, turbine rotation, and electricity production.",
-      "notes": "Best simple animation for understanding the core process of PWR reactor. Of the nation’s 96 reactors, 32 are boiling water reactors, while 64 are pressurized water reactors.",
+      "notes": "Best simple animation for understanding the core process of PWR reactor. Of the nation's 94 operating reactors, roughly one-third are boiling water reactors, while the rest are pressurized water reactors. Original 2019 article URL relocated; current NEI fundamentals page used.",
       "license_note": "Verify reuse permission before publication."
     }
   ],
@@ -122,16 +123,79 @@
       "recommended_use": "Support a future-demand section focused on AI data centers and round-the-clock electricity needs.",
       "notes": "Use as a current industry perspective, not as a primary technical source.",
       "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "doe_nuclear_101",
+      "type": "educational_page",
+      "title": "NUCLEAR 101: How Does a Nuclear Reactor Work?",
+      "source_url": "https://www.energy.gov/ne/articles/nuclear-101-how-does-nuclear-reactor-work",
+      "recommended_use": "Clear, illustrated explanation of how PWR and BWR light-water reactors produce electricity through fission.",
+      "notes": "Includes DOE-produced infographic diagrams of both reactor types. Good primary reference for the how-it-works section.",
+      "license_note": "Public agency source; suitable for citation and reference."
+    },
+    {
+      "id": "iaea_science_of_nuclear_power",
+      "type": "educational_page",
+      "title": "What is Nuclear Energy? The Science of Nuclear Power",
+      "source_url": "https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power",
+      "recommended_use": "Comprehensive overview covering fission, reactor operation, fuel cycle, waste management, and nuclear power's role in climate change mitigation.",
+      "notes": "Updated for COP30 (2025). Includes IAEA-produced graphics on fission and PWR design. Also useful as a timeline anchor since it covers 400+ global reactors and projections to 2050.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "doe_smr_overview",
+      "type": "reference_page",
+      "title": "Advanced Small Modular Reactors (SMRs)",
+      "source_url": "https://www.energy.gov/ne/small-modular-reactors",
+      "recommended_use": "Introduce next-generation reactor technology: smaller footprint, flexible siting, incremental capacity additions.",
+      "notes": "Covers NuScale design approval, DOE R&D program, and deployment timeline (late 2020s–early 2030s). Good forward-looking content for the future-demand section.",
+      "license_note": "Public agency source; suitable for citation and reference."
+    },
+    {
+      "id": "ourworldindata_chernobyl_fukushima",
+      "type": "data_story",
+      "title": "What was the death toll from Chernobyl and Fukushima?",
+      "source_url": "https://ourworldindata.org/what-was-the-death-toll-from-chernobyl-and-fukushima",
+      "recommended_use": "Address the two most well-known nuclear accidents with peer-reviewed, data-driven analysis to counter common misconceptions.",
+      "notes": "Puts accident deaths in context against routine fossil-fuel mortality. Directly supports the museum's goal of correcting safety misconceptions.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "nrc_spent_fuel_storage",
+      "type": "reference_page",
+      "title": "Spent Fuel Storage",
+      "source_url": "https://www.nrc.gov/waste/spent-fuel-storage/index.html",
+      "recommended_use": "Explain how spent nuclear fuel is safely stored and managed after use in a reactor.",
+      "notes": "Authoritative NRC overview of wet and dry storage methods. Helps frame waste as a managed engineering challenge rather than an unsolved problem.",
+      "license_note": "Public agency source; verify any graphic reuse terms."
+    },
+    {
+      "id": "ourworldindata_electricity_mix",
+      "type": "data_story",
+      "title": "Electricity Mix",
+      "source_url": "https://ourworldindata.org/electricity-mix",
+      "recommended_use": "Interactive charts showing each country's electricity generation by source, including nuclear share over time.",
+      "notes": "Useful for data-driven visuals in the hero or timeline sections showing nuclear's global contribution.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "eia_nuclear_explained",
+      "type": "educational_page",
+      "title": "Nuclear explained",
+      "source_url": "https://www.eia.gov/energyexplained/nuclear/",
+      "recommended_use": "Top-level EIA portal for U.S. nuclear energy data: generation statistics, plant locations, fuel cycle overview, and waste information.",
+      "notes": "Good general-purpose reference that links to detailed sub-pages. Complements the more specific EIA sources.",
+      "license_note": "Public agency source; generally suitable for citation and reference."
     }
   ],
   "timeline_sources": [
     {
       "id": "iaea_nuclear_power_topic",
       "type": "topic_overview",
-      "title": "Nuclear Power",
-      "source_url": "https://www.iaea.org/topics/nuclear-power",
-      "recommended_use": "General historical and policy context for nuclear power development.",
-      "notes": "Good anchor source for a timeline narrative.",
+      "title": "What is Nuclear Energy? The Science of Nuclear Power",
+      "source_url": "https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power",
+      "recommended_use": "General historical and policy context for nuclear power development, plus projections to 2050.",
+      "notes": "Replaces former /topics/nuclear-power page (now 404). This IAEA educational article covers the same ground with additional detail on fission, fuel cycle, waste, and climate.",
       "license_note": "Verify reuse permission before publication."
     },
     {
@@ -162,7 +226,7 @@
     {
       "section_id": "how_it_works",
       "title": "How a Reactor Makes Electricity",
-      "best_sources": ["nuclearplant_animation", "nrc_pwr_overview", "nrc_reactor_education"]
+      "best_sources": ["nuclearplant_animation", "nrc_pwr_overview", "nrc_reactor_education", "doe_nuclear_101", "iaea_science_of_nuclear_power"]
     },
     {
       "section_id": "benefits",
@@ -172,17 +236,22 @@
     {
       "section_id": "fuel_cycle",
       "title": "From Uranium to Electricity",
-      "best_sources": ["eia_nuclear_fuel_cycle"]
+      "best_sources": ["eia_nuclear_fuel_cycle", "iaea_science_of_nuclear_power", "eia_nuclear_explained"]
     },
     {
       "section_id": "future_demand",
       "title": "Powering AI and the Future Grid",
-      "best_sources": ["deloitte_data_center_nuclear", "iaea_smart_stable_reliable"]
+      "best_sources": ["deloitte_data_center_nuclear", "iaea_smart_stable_reliable", "doe_smr_overview"]
+    },
+    {
+      "section_id": "safety",
+      "title": "Addressing Nuclear Safety and Waste",
+      "best_sources": ["safest_cleanest_sources_chart", "ourworldindata_chernobyl_fukushima", "nrc_spent_fuel_storage"]
     },
     {
       "section_id": "timeline",
       "title": "The Rise of Nuclear Power",
-      "best_sources": ["iaea_nuclear_power_topic", "world_nuclear_world_energy_needs", "eia_nuclear_energy_overview_data"]
+      "best_sources": ["iaea_nuclear_power_topic", "world_nuclear_world_energy_needs", "eia_nuclear_energy_overview_data", "ourworldindata_electricity_mix"]
     }
   ],
   "tone_guidance": [
