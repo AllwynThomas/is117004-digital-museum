@@ -5,6 +5,7 @@ import { StatCard } from "@/components/ui/stat-card";
 import { StepCard } from "@/components/ui/step-card";
 import { SourceBadge } from "@/components/ui/source-badge";
 import { DataComparisonCard } from "@/components/ui/data-comparison-card";
+import { TimelineEntry } from "@/components/ui/timeline-entry";
 
 function getSource(id: string) {
   return exhibitData.sources.find((s) => s.id === id);
@@ -48,10 +49,10 @@ export default function Home() {
   const eiaNuclearSource = getSource("eia_nuclear_explained");
   const deloitteSource = getSource("deloitte_data_center_nuclear");
   const doeSmrSource = getSource("doe_smr_overview");
+  const iaeaTopicSource = getSource("iaea_nuclear_power_topic");
 
-  const placeholderSections = [
-    { id: "timeline", title: "Timeline" },
-  ];
+  const timelineEntries = exhibitData.timelineEntries;
+  const timelineClosingStatement = exhibitData.timelineClosingStatement;
 
   return (
     <main id="main-content">
@@ -455,19 +456,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Placeholder Sections ── */}
-      {placeholderSections.map((section) => (
-        <section
-          key={section.id}
-          id={section.id}
-          aria-labelledby={`${section.id}-heading`}
-          style={{
-            padding: "var(--space-16) var(--space-6)",
-          }}
-        >
-          <h2 id={`${section.id}-heading`}>{section.title}</h2>
-        </section>
-      ))}
+      {/* ── Timeline Section ── */}
+      <section
+        id="timeline"
+        aria-labelledby="timeline-title"
+        className="bg-[var(--color-bg-dark)] py-[var(--space-16)] px-[var(--space-6)]"
+      >
+        <div className="mx-auto max-w-[var(--grid-max-width)]">
+          <SectionHeader
+            eyebrow="History"
+            title="The Rise of Nuclear Power"
+            id="timeline-title"
+            variant="dark"
+          />
+
+          <div className="relative mt-[var(--space-12)]">
+            {/* Desktop vertical timeline rule */}
+            <div className="absolute left-[120px] top-0 bottom-0 hidden w-[2px] bg-[var(--color-accent-cyan)] md:block" />
+
+            <div className="flex flex-col gap-[var(--space-12)]">
+              {timelineEntries.map((entry) => (
+                <TimelineEntry
+                  key={String(entry.year)}
+                  year={entry.year}
+                  title={entry.title}
+                  description={entry.description}
+                  variant="dark"
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-[var(--space-12)] flex flex-wrap gap-[var(--space-3)]">
+            {iaeaTopicSource && (
+              <SourceBadge
+                sourceName="IAEA"
+                sourceUrl={iaeaTopicSource.sourceUrl}
+                variant="dark"
+              />
+            )}
+            {chernobylSource && (
+              <SourceBadge
+                sourceName="Our World in Data"
+                sourceUrl={chernobylSource.sourceUrl}
+                variant="dark"
+              />
+            )}
+            {doeSmrSource && (
+              <SourceBadge
+                sourceName="DOE — Small Modular Reactors"
+                sourceUrl={doeSmrSource.sourceUrl}
+                variant="dark"
+              />
+            )}
+            {deloitteSource && (
+              <SourceBadge
+                sourceName="Deloitte"
+                sourceUrl={deloitteSource.sourceUrl}
+                variant="dark"
+              />
+            )}
+          </div>
+
+          <p className="mt-[var(--space-12)] max-w-[720px] text-[length:var(--font-size-body)] italic leading-relaxed text-[var(--color-text-secondary-on-dark)]">
+            {timelineClosingStatement}
+          </p>
+        </div>
+      </section>
     </main>
   );
 }

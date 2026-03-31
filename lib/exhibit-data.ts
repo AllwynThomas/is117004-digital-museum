@@ -55,6 +55,7 @@ export interface ComparisonData {
 export interface ExhibitData {
   sections: ExhibitSection[];
   timelineEntries: TimelineEntry[];
+  timelineClosingStatement: string;
   processSteps: Record<string, ProcessStep[]>;
   statCards: Record<string, StatCard[]>;
   comparisonData: Record<string, ComparisonData[]>;
@@ -156,8 +157,74 @@ export const exhibitData: ExhibitData = {
       transitionText:
         "Nuclear power is not new. It has been growing for eight decades. Here is how it became a global energy source.",
     },
+    {
+      id: "timeline",
+      title: "The Rise of Nuclear Power",
+      eyebrow: "History",
+      lede: "",
+      bodyContent: "",
+      sourceIds: [
+        "iaea_nuclear_power_topic",
+        "ourworldindata_chernobyl_fukushima",
+        "doe_smr_overview",
+        "deloitte_data_center_nuclear",
+      ],
+      accentColor: "--color-accent-cyan",
+    },
   ],
-  timelineEntries: [],
+  timelineEntries: [
+    {
+      year: 1942,
+      title: "Chicago Pile-1",
+      description:
+        "First controlled nuclear chain reaction, achieved by Enrico Fermi's team at the University of Chicago. Proved that sustained fission was possible.",
+      sourceIds: ["iaea_nuclear_power_topic"],
+    },
+    {
+      year: 1954,
+      title: "Obninsk, USSR",
+      description:
+        "First nuclear power plant connected to an electrical grid. A 5-megawatt reactor demonstrated that nuclear fission could generate usable electricity.",
+      sourceIds: ["iaea_nuclear_power_topic"],
+    },
+    {
+      year: 1957,
+      title: "Shippingport, Pennsylvania",
+      description:
+        "First full-scale commercial nuclear power plant in the United States. Operated for 25 years, proving the viability of civilian nuclear power.",
+      sourceIds: ["iaea_nuclear_power_topic"],
+    },
+    {
+      year: 1979,
+      title: "Three Mile Island",
+      description:
+        "Partial meltdown of a reactor in Pennsylvania. No deaths resulted. The accident led to sweeping safety reforms across the U.S. nuclear industry.",
+      sourceIds: ["ourworldindata_chernobyl_fukushima"],
+    },
+    {
+      year: 1986,
+      title: "Chernobyl",
+      description:
+        "Worst nuclear accident in history, caused by design flaws and operator errors during a safety test. Led to a global overhaul of nuclear safety standards and reactor design.",
+      sourceIds: ["ourworldindata_chernobyl_fukushima"],
+    },
+    {
+      year: 2011,
+      title: "Fukushima Daiichi",
+      description:
+        "Tsunami-caused meltdowns at three reactors in Japan. Zero deaths from radiation exposure. The accident prompted worldwide safety reviews and reinforced the importance of natural-disaster preparedness in plant design.",
+      sourceIds: ["ourworldindata_chernobyl_fukushima"],
+    },
+    {
+      year: "2020s",
+      title: "Nuclear Renaissance",
+      description:
+        "Small Modular Reactors enter the licensing pipeline. AI data center demand drives renewed investment. Net-zero commitments bring nuclear back to the center of energy planning worldwide.",
+      sourceIds: ["doe_smr_overview", "deloitte_data_center_nuclear"],
+    },
+  ],
+  timelineClosingStatement:
+    "Nuclear energy is not a hypothetical. It is a proven, global-scale, low-carbon power source — and the evidence is here for you to verify.",
   processSteps: {
     "how-it-works": [
       {
@@ -307,6 +374,18 @@ export const exhibitData: ExhibitData = {
     ],
   },
   sources: [
+    {
+      id: "iaea_nuclear_power_topic",
+      type: "topic_overview",
+      title: "What is Nuclear Energy? The Science of Nuclear Power",
+      sourceUrl:
+        "https://www.iaea.org/newscenter/news/what-is-nuclear-energy-the-science-of-nuclear-power",
+      recommendedUse:
+        "General historical and policy context for nuclear power development, plus projections to 2050.",
+      notes:
+        "Replaces former /topics/nuclear-power page. Covers fission, fuel cycle, waste, and climate.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
     {
       id: "uranium_vs_fossil_fuels_diagram",
       type: "image",
