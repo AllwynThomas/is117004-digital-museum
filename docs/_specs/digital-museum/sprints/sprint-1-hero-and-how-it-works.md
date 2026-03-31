@@ -118,8 +118,10 @@ and later reused for the Fuel Cycle section.
 Required behavior:
 
 - Accepts props: `stepNumber: number`, `title: string`,
-  `description: string`, `icon?: string`.
-- Renders a card with the step number as a prominent numeral, the title in
+  `description: string`, `icon?: string`, `accentColor?: string`.
+- Renders a card with the step number as a prominent numeral (use
+  `accentColor` CSS custom property if provided, otherwise
+  `--color-accent-blue`), the title in
   `--font-size-sub` weight 700, and the description in `--font-size-body`.
 - Card surface uses `--color-bg-tertiary` with a thin `--color-surface-rule`
   border. No border-radius (Swiss style). No drop shadows.
@@ -141,9 +143,10 @@ the hero section and later reused in Benefits and Future Demand.
 Required behavior:
 
 - Accepts props: `value: string`, `label: string`, `context?: string`,
-  `sourceId?: string`, `variant?: "light" | "dark"`.
+  `sourceId?: string`, `accentColor?: string`, `variant?: "light" | "dark"`.
 - Renders the value as a large numeral (`--font-size-section`, weight 800,
-  accent color).
+  accent color). Use the `accentColor` prop (a CSS custom property name) if
+  provided; otherwise fall back to `--color-accent-blue`.
 - Renders the label below at `--font-size-body`.
 - Renders optional context at `--font-size-caption`.
 - On dark variant, colors switch to the on-dark palette.
@@ -183,7 +186,7 @@ Required data:
   `eyebrow: "Inside the Reactor"`
 - Lede: plain-language summary of the PWR process.
 - Source IDs: `["nuclearplant_animation", "nrc_pwr_overview", "doe_nuclear_101"]`
-- Accent color: `--color-accent-cyan`
+- Accent color: `--color-accent-blue`
 - Transition text: "Now that you see how the energy is made, here is how
   it compares with every other source."
 
@@ -309,4 +312,15 @@ Then visually inspect at 1440 px, 768 px, and 390 px in the browser.
 
 ## QA Deviations
 
-None.
+1. **How-It-Works accent color changed from `--color-accent-cyan` to
+   `--color-accent-blue`.** The spec’s CSS Architecture assigns cyan to
+   How It Works “(on dark panel)”, and the color token definition says
+   “Do not use on light backgrounds — fails WCAG AA contrast against
+   white and light-gray surfaces.” However, the spec’s light-first
+   design principle limits dark panels to Hero and Timeline only. Since
+   the How It Works section uses a light background
+   (`--color-bg-primary` / `--color-bg-secondary`), cyan cannot be used
+   as the accent without violating WCAG AA. Changed to
+   `--color-accent-blue`, which passes 4.5:1 on all light surfaces and
+   is already the spec’s nav-active indicator color. Cyan remains the
+   accent for Hero and Timeline (both dark-panel sections).

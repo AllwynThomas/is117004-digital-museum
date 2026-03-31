@@ -40,7 +40,8 @@ side-by-side or stacked comparison data, used in both Benefits and Safety.
 Required behavior:
 
 - Accepts props: `items: Array<{ label: string; value: string; unit?: string }>`,
-  `title?: string`, `sourceId?: string`, `variant?: "light" | "dark"`.
+  `title?: string`, `sourceName?: string`, `sourceUrl?: string`,
+  `variant?: "light" | "dark"`.
 - Renders a comparison layout: each item shows its label and value,
   visually distinguished so the comparison is immediate.
 - On desktop, items can be displayed side-by-side in a row. On mobile,

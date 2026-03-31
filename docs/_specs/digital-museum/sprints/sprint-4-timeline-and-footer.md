@@ -41,7 +41,7 @@ milestone in the nuclear power timeline.
 
 Required behavior:
 
-- Accepts props: `year: number`, `title: string`, `description: string`,
+- Accepts props: `year: number | string`, `title: string`, `description: string`,
   `badge?: string`, `variant?: "light" | "dark"`.
 - Renders the year as a prominent numeral (`--font-size-section`, weight
   800, `--color-accent-cyan` on dark panels).
@@ -105,6 +105,9 @@ spec.
    planning worldwide." /
    Sources: `["doe_smr_overview", "deloitte_data_center_nuclear"]`
 
+> **Note:** The `TimelineEntry` type defines `year: number | string`.
+> Entry 7 uses the string `"2020s"` rather than a single year number.
+
 **Closing statement** (displayed after the timeline):
 "Nuclear energy is not a hypothetical. It is a proven, global-scale,
 low-carbon power source — and the evidence is here for you to verify."
@@ -130,7 +133,7 @@ Required structure (from spec):
 - Cyan accent (`--color-accent-cyan`) for year numerals and the timeline
   rule — this is acceptable on dark backgrounds per the spec's color
   constraint.
-- Source badges: IAEA, Our World in Data, DOE.
+- Source badges: IAEA, Our World in Data, World Nuclear Association, DOE.
 - Closing Sage-voice statement after the final entry.
 - All content pulled from `lib/exhibit-data.ts`.
 

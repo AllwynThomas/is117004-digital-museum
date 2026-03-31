@@ -113,7 +113,10 @@ Verify WCAG 2.1 AA contrast ratios for all text-background combinations:
   text, ≥ 3:1 for large text
 - `--color-accent-blue` (#0969da) on white: must be ≥ 4.5:1
 - `--color-accent-red` (#cf222e) on white: must be ≥ 4.5:1
-- `--color-accent-amber` (#bf8700) on white: must be ≥ 3:1 for large text
+- `--color-accent-amber` (#bf8700) on white: must be ≥ 3:1 for large text.
+  **Must NOT be used for normal-size text on light backgrounds** (fails
+  4.5:1). Verify amber is only applied to headings, step numbers, or other
+  large text elements in the Fuel Cycle section.
 - `--color-accent-green` (#1a7f37) on white: must be ≥ 4.5:1
 
 **Dark backgrounds (`#0d1117`):**
@@ -169,6 +172,21 @@ grep -rn "href=\"http" app/ components/ --include="*.tsx" --include="*.ts"
 ```
 
 - Verify each external link returns HTTP 200 or 301 redirect.
+
+**HTML validation (Testing Strategy #14):**
+
+- Build the static output and validate the generated `out/index.html`
+  against the W3C Nu HTML Checker.
+- Zero errors required. Warnings are acceptable.
+
+```bash
+npm run build
+npx vnu-jar out/index.html
+```
+
+- If `vnu-jar` is not available locally, upload `out/index.html` to the
+  online W3C Nu HTML Checker (https://validator.w3.org/nu/) and confirm
+  zero errors.
 
 ### 6. Responsive and visual verification
 
@@ -312,6 +330,7 @@ npx tsc --noEmit
 - [ ] Source traceability: every statistic maps to a SOURCES.json entry
 - [ ] All external links have `rel="noopener noreferrer"` and `target="_blank"`
 - [ ] External links return HTTP 200 or valid redirects
+- [ ] HTML validation: `out/index.html` passes W3C Nu HTML Checker with zero errors
 - [ ] Desktop layout (1440 px) — no horizontal overflow, multi-column grid
 - [ ] Tablet layout (768 px) — correct collapse, nav usable
 - [ ] Mobile layout (390 px) — single column, hamburger functional

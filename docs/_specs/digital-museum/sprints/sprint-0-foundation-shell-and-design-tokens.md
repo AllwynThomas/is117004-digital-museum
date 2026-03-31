@@ -255,18 +255,21 @@ Required type definitions:
 
 - `Source` — `id: string`, `type: string`, `title: string`,
   `sourceUrl: string`, `recommendedUse: string`, `notes: string`,
-  `licensNote: string`
+  `licenseNote: string`
 - `ExhibitSection` — `id: string`, `title: string`, `eyebrow: string`,
   `lede: string`, `bodyContent: string`, `sourceIds: string[]`,
-  `accentColor: string`
-- `TimelineEntry` — `year: number`, `title: string`,
+  `accentColor: string`, `transitionText?: string`
+- `TimelineEntry` — `year: number | string`, `title: string`,
   `description: string`, `sourceIds: string[]`
 - `ProcessStep` — `stepNumber: number`, `title: string`,
   `description: string`, `icon?: string`
 - `StatCard` — `value: string`, `label: string`, `context: string`,
   `sourceId: string`
 - `ExhibitData` — `sections: ExhibitSection[]`,
-  `timelineEntries: TimelineEntry[]`, `sources: Source[]`
+  `timelineEntries: TimelineEntry[]`,
+  `processSteps: Record<string, ProcessStep[]>`,
+  `statCards: Record<string, StatCard[]>`,
+  `sources: Source[]`
 
 Export a stub `exhibitData` constant that satisfies the `ExhibitData`
 type with empty arrays. This will be populated in Sprints 1–4.

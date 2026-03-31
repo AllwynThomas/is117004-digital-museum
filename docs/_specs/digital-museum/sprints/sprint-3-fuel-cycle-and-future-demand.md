@@ -42,7 +42,7 @@ Update `lib/exhibit-data.ts` with real content for both sections.
 - Lede: Sage-voice introduction to the nuclear fuel lifecycle.
 - Body content: explanation that demystifies each step — emphasize this is
   a carefully regulated industrial process at every stage.
-- Source IDs: `["eia_nuclear_fuel_cycle", "iaea_science_of_nuclear_power", "eia_nuclear_explained"]`
+- Source IDs: `["eia_nuclear_fuel_cycle", "iaea_science_of_nuclear_power", "eia_nuclear_explained", "nrc_spent_fuel_storage"]`
 - Accent color: `--color-accent-amber`
 - Transition: "With this lifecycle in view, the question becomes: where is
   nuclear energy headed next?"
@@ -72,7 +72,7 @@ Update `lib/exhibit-data.ts` with real content for both sections.
 - Body content: AI data centers as the new demand driver. Real numbers
   from Deloitte analysis. SMR technology as the next-generation solution.
   Frame as opportunity, not crisis.
-- Source IDs: `["deloitte_data_center_nuclear", "doe_smr_overview"]`
+- Source IDs: `["deloitte_data_center_nuclear", "doe_smr_overview", "iaea_smart_stable_reliable"]`
 - Accent color: `--color-accent-blue`
 - Transition: "Nuclear power is not new. It has been growing for eight
   decades. Here is how it became a global energy source."
