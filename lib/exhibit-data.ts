@@ -40,11 +40,24 @@ export interface StatCard {
   sourceId: string;
 }
 
+export interface ComparisonItem {
+  label: string;
+  value: string;
+  unit?: string;
+}
+
+export interface ComparisonData {
+  title: string;
+  items: ComparisonItem[];
+  sourceId: string;
+}
+
 export interface ExhibitData {
   sections: ExhibitSection[];
   timelineEntries: TimelineEntry[];
   processSteps: Record<string, ProcessStep[]>;
   statCards: Record<string, StatCard[]>;
+  comparisonData: Record<string, ComparisonData[]>;
   sources: Source[];
 }
 
@@ -77,6 +90,38 @@ export const exhibitData: ExhibitData = {
       accentColor: "--color-accent-blue",
       transitionText:
         "Now that you see how the energy is made, here is how it compares with every other source.",
+    },
+    {
+      id: "benefits",
+      title: "Why Nuclear Beats Fossil Fuels",
+      eyebrow: "The Evidence",
+      lede: "When measured by deaths per unit of energy, greenhouse gas emissions per kilowatt-hour, and capacity factor, nuclear power consistently ranks among the safest and cleanest sources of electricity available today.",
+      bodyContent:
+        "The chart below compares deaths and greenhouse gas emissions across major energy sources. Nuclear energy produces lifecycle CO₂ emissions comparable to wind and solar, while maintaining the highest capacity factor of any source — meaning plants generate electricity more than 93% of the time. Per unit of energy produced, nuclear has the lowest death rate of any major source, including wind, solar, and hydropower.",
+      sourceIds: [
+        "safest_cleanest_sources_chart",
+        "iaea_clean_energy_pdf",
+        "iaea_smart_stable_reliable",
+      ],
+      accentColor: "--color-accent-green",
+      transitionText:
+        "If the safety record is this strong, why do accidents dominate the public conversation?",
+    },
+    {
+      id: "safety",
+      title: "Addressing Nuclear Safety and Waste",
+      eyebrow: "Honest Context",
+      lede: "Nuclear energy has the lowest death rate per unit of electricity generated of any major energy source, according to peer-reviewed research compiled by Our World in Data.",
+      bodyContent:
+        "The two most serious accidents in civilian nuclear history — Chernobyl (1986) and Fukushima (2011) — resulted in estimated death tolls of approximately 4,000 (WHO long-term projection for Chernobyl, including future cancer deaths) and one confirmed radiation fatality at Fukushima. Even including these events, nuclear energy causes 0.03 deaths per terawatt-hour of electricity produced, compared to 24.6 for coal, 18.4 for oil, and 2.8 for natural gas. Routine fossil-fuel combustion kills far more people every year through air pollution than all nuclear accidents in history combined. Nuclear waste, often cited as an unsolved problem, is better described as a managed engineering challenge: all U.S. spent fuel from more than 60 years of commercial reactor operation would fit on a single football field, stacked less than 10 yards high. Spent fuel is stored securely in steel-lined concrete pools and dry cask systems under continuous NRC oversight.",
+      sourceIds: [
+        "ourworldindata_chernobyl_fukushima",
+        "nrc_spent_fuel_storage",
+        "safest_cleanest_sources_chart",
+      ],
+      accentColor: "--color-accent-red",
+      transitionText:
+        "Nuclear fuel has one of the most carefully managed lifecycles of any energy source. Here is how it works from start to finish.",
     },
   ],
   timelineEntries: [],
@@ -127,6 +172,49 @@ export const exhibitData: ExhibitData = {
         label: "Global Electricity",
         context: "From nuclear sources",
         sourceId: "iaea_science_of_nuclear_power",
+      },
+    ],
+    benefits: [
+      {
+        value: "Low Emissions",
+        label: "Lifecycle CO₂",
+        context: "Lifecycle CO₂ comparable to wind and solar",
+        sourceId: "iaea_clean_energy_pdf",
+      },
+      {
+        value: "~93%",
+        label: "Capacity Factor",
+        context:
+          "Highest of any energy source — nuclear plants run 24/7",
+        sourceId: "eia_nuclear_explained",
+      },
+      {
+        value: "Extreme Density",
+        label: "Energy per Fuel Unit",
+        context:
+          "One uranium pellet contains as much energy as one ton of coal",
+        sourceId: "uranium_vs_fossil_fuels_diagram",
+      },
+      {
+        value: "Fewest Deaths",
+        label: "Deaths per TWh",
+        context:
+          "Nuclear has the lowest death rate per TWh of any major source",
+        sourceId: "safest_cleanest_sources_chart",
+      },
+    ],
+  },
+  comparisonData: {
+    safety: [
+      {
+        title: "Deaths per TWh of Electricity Production",
+        items: [
+          { label: "Nuclear", value: "0.03", unit: "deaths per TWh" },
+          { label: "Natural Gas", value: "2.8", unit: "deaths per TWh" },
+          { label: "Oil", value: "18.4", unit: "deaths per TWh" },
+          { label: "Coal", value: "24.6", unit: "deaths per TWh" },
+        ],
+        sourceId: "safest_cleanest_sources_chart",
       },
     ],
   },
@@ -187,6 +275,75 @@ export const exhibitData: ExhibitData = {
       notes:
         "Updated for COP30 (2025). Covers 400+ global reactors and projections to 2050.",
       licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "safest_cleanest_sources_chart",
+      type: "chart",
+      title: "What are the safest and cleanest sources of energy?",
+      sourceUrl: "https://ourworldindata.org/safest-sources-of-energy",
+      recommendedUse:
+        "Compare deaths and lifecycle emissions across energy sources.",
+      notes:
+        "Strong evidence visual for nuclear's safety and climate advantages.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "iaea_clean_energy_pdf",
+      type: "pdf",
+      title: "Nuclear Power: Clean Energy",
+      sourceUrl:
+        "https://www.iaea.org/sites/default/files/2025-09/cleanenergy_0.pdf",
+      recommendedUse:
+        "Support high-level claims about nuclear power's low emissions and steady supply.",
+      notes: "Good for a concise sustainability section.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "iaea_smart_stable_reliable",
+      type: "article",
+      title: "Smart, stable, reliable",
+      sourceUrl: "https://www.iaea.org/bulletin/smart-stable-reliable",
+      recommendedUse:
+        "Support claims that nuclear can provide stable, low-carbon, 24/7 power and help grids integrate renewables.",
+      notes:
+        "Especially relevant for reliability and grid stability messaging.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "ourworldindata_chernobyl_fukushima",
+      type: "data_story",
+      title: "What was the death toll from Chernobyl and Fukushima?",
+      sourceUrl:
+        "https://ourworldindata.org/what-was-the-death-toll-from-chernobyl-and-fukushima",
+      recommendedUse:
+        "Address the two most well-known nuclear accidents with peer-reviewed, data-driven analysis.",
+      notes:
+        "Puts accident deaths in context against routine fossil-fuel mortality.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "nrc_spent_fuel_storage",
+      type: "reference_page",
+      title: "Spent Fuel Storage",
+      sourceUrl:
+        "https://www.nrc.gov/waste/spent-fuel-storage/index.html",
+      recommendedUse:
+        "Explain how spent nuclear fuel is safely stored and managed after use in a reactor.",
+      notes:
+        "Authoritative NRC overview of wet and dry storage methods.",
+      licenseNote: "Public agency source; verify any graphic reuse terms.",
+    },
+    {
+      id: "eia_nuclear_explained",
+      type: "educational_page",
+      title: "Nuclear explained",
+      sourceUrl: "https://www.eia.gov/energyexplained/nuclear/",
+      recommendedUse:
+        "Top-level EIA portal for U.S. nuclear energy data.",
+      notes:
+        "Good general-purpose reference for nuclear capacity factor and generation statistics.",
+      licenseNote:
+        "Public agency source; generally suitable for citation and reference.",
     },
   ],
 };
