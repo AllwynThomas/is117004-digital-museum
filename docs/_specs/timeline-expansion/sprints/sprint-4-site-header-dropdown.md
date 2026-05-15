@@ -138,6 +138,17 @@ const itself is **not modified**.
         e.preventDefault();
         setIsTimelineDropdownOpen((prev) => !prev);
       }
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setIsTimelineDropdownOpen(true);
+        // Focus the first menu item after the state update triggers a re-render
+        setTimeout(() => {
+          const panel = timelineTriggerRef.current
+            ?.closest("[data-timeline-container]")
+            ?.querySelector<HTMLElement>('[role="menuitem"]');
+          panel?.focus();
+        }, 0);
+      }
       if (e.key === "Escape") {
         setIsTimelineDropdownOpen(false);
       }
@@ -323,11 +334,9 @@ Timeline item separately).
       padding: "var(--space-4) var(--space-6)",
       fontSize: "var(--font-size-body)",
       background: "transparent",
-      border: "none",
-      borderBottom: "1px solid var(--color-surface-rule)",
       cursor: "pointer",
     }}
-    aria-expanded={isTimelineMobileExpanded}
+    aria-expanded={isTimelineMobileExpanded ? "true" : "false"}
   >
     Timeline
     <ChevronDown
@@ -379,10 +388,22 @@ Timeline item separately).
 </li>
 ```
 
-**Required imports to add to `site-header.tsx`:**
+**Required changes to imports in `site-header.tsx`:**
+
+The existing file already imports `Menu` and `X` from `lucide-react`. Update
+that import to add `ChevronDown`; do not add a second `lucide-react` import:
 
 ```ts
+// Before (existing):
+import { Menu, X } from "lucide-react";
+
+// After (updated):
 import { Menu, X, ChevronDown } from "lucide-react";
+```
+
+Add `exhibitData` as a new import (it is not currently imported):
+
+```ts
 import { exhibitData } from "@/lib/exhibit-data";
 ```
 
@@ -440,14 +461,16 @@ Expected outcomes:
 - [ ] "Timeline Overview" is the first item in the panel, weight 700, `--color-accent-blue`
 - [ ] Event link data derived from `exhibitData.timelineEntries` — not hardcoded
 - [ ] Full WAI-ARIA Menu Button keyboard pattern implemented (↑↓, Home, End, Escape, Tab)
+- [ ] `ArrowDown` on the trigger button opens the dropdown and focuses the first `[role="menuitem"]` element
 - [ ] Escape closes dropdown and returns focus to trigger button via `timelineTriggerRef.current?.focus()`
 - [ ] Tab closes dropdown without preventing default tab behavior
 - [ ] `NAV_SECTIONS` const is unchanged
-- [ ] `ChevronDown` imported from `lucide-react`
+- [ ] `ChevronDown` added to the existing `lucide-react` import (not a duplicate import)
 - [ ] `exhibitData` imported from `@/lib/exhibit-data`
 - [ ] Mobile "Timeline" row renders chevron icon to the right of the label
 - [ ] Chevron rotates 180° when sub-list is open
 - [ ] Chevron rotation transition uses `motion-reduce:transition-none` (or equivalent CSS media query)
+- [ ] Mobile accordion button carries `aria-expanded` using string values `"true"` / `"false"` (not boolean)
 - [ ] Mobile sub-list includes "Timeline Overview" link first, then all 7 event links
 - [ ] Mobile sub-list links indented `--space-8` from left edge
 - [ ] All mobile sub-list links call `closeMobileMenu()` on click

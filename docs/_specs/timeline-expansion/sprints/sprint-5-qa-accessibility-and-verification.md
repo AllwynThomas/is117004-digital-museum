@@ -114,13 +114,14 @@ sprint completion.
 
 ### 3. Routing and navigation tests (Tests 29–33)
 
-Write or update Playwright tests in `tests/browser/` to cover the following.
+Write new Playwright tests in a new file `tests/browser/timeline-expansion.spec.ts`.
+Do not add timeline-expansion tests to the existing `accessibility.spec.ts` or
+`content-and-responsive.spec.ts` files.
 
 **Test 29 — All 7 event pages render:**
 
-For each slug, navigate to `/timeline/[slug]` and assert:
-- The page title `<title>` matches the format `"{year} — {title} | Nuclear Energy Museum"`.
-- An `<h1>` containing the event title is present in the DOM.
+For each slug, navigate to `/timeline/[slug]` and assert both the page `<title>`
+and the `<h1>` heading:
 
 ```ts
 const slugs = [
@@ -133,9 +134,38 @@ const slugs = [
   { slug: "nuclear-renaissance", year: "2020s", title: "Nuclear Renaissance" },
 ];
 
-for (const { slug, title } of slugs) {
+for (const { slug, year, title } of slugs) {
   await page.goto(`/timeline/${slug}`);
+  await expect(page).toHaveTitle(
+    `${year} — ${title} | Nuclear Energy Museum`,
+  );
   await expect(page.locator("h1")).toContainText(title);
+}
+```
+
+**Test 29b — No prose on event pages (Acceptance Criterion 3):**
+
+For each event page, assert that the `entry.description` text does **not** appear
+in the DOM. The description is the 1–3 sentence summary shown on the main page
+timeline — it must be intentionally omitted from the detail page layout.
+
+```ts
+// Leading fragment of each entry's description field (sufficient to identify)
+const descriptions = [
+  "First controlled nuclear chain reaction",
+  "First nuclear power plant connected to an electrical grid",
+  "First full-scale commercial nuclear power plant",
+  "Partial meltdown of a reactor in Pennsylvania",
+  "Worst nuclear accident in history",
+  "Tsunami-caused meltdowns at three reactors",
+  "Small Modular Reactors enter the licensing pipeline",
+];
+
+for (let i = 0; i < slugs.length; i++) {
+  await page.goto(`/timeline/${slugs[i].slug}`);
+  await expect(
+    page.getByText(descriptions[i], { exact: false }),
+  ).not.toBeVisible();
 }
 ```
 
@@ -217,8 +247,11 @@ visible DOM content — not just as an `aria-label`:
 ```ts
 for (const { slug, imageAlt } of slugData) {
   await page.goto(`/timeline/${slug}`);
-  // Assert visible text in the placeholder region
-  const placeholderText = page.locator("text=" + imageAlt).first();
+  // Assert visible text in the placeholder region.
+  // page.getByText() is more robust than page.locator("text=" + imageAlt)
+  // because it handles commas, punctuation, and special characters in imageAlt
+  // strings without locator-syntax collisions.
+  const placeholderText = page.getByText(imageAlt, { exact: false }).first();
   await expect(placeholderText).toBeVisible();
 }
 ```
@@ -231,8 +264,15 @@ An `aria-label` alone does not satisfy this criterion.
 Run a Lighthouse accessibility audit on at least one event detail page
 (e.g., `/timeline/chernobyl`). Assert the accessibility score is ≥ 95.
 
-If Lighthouse CI is configured, include the event detail page URL in
-`lighthouserc.json`. Otherwise run manually:
+Lighthouse CI is already configured (`lighthouserc.json` exists). Add at least
+one event detail page URL to the `url` array so it is audited on every run:
+
+```json
+// lighthouserc.json — update the "url" array inside "collect"
+"url": ["/", "/timeline/chernobyl"]
+```
+
+Then run:
 
 ```bash
 npm run build
@@ -437,19 +477,21 @@ out/timeline/nuclear-renaissance/index.html
 ## Completion Checklist
 
 - [ ] All `// verify` comments removed from `lib/exhibit-data.ts`; every stat confirmed against its source URL
+- [ ] New tests written in `tests/browser/timeline-expansion.spec.ts`
 - [ ] All 46 tests pass (25 existing + 21 new)
 - [ ] Test 26: `npm run build` exits 0; 7 HTML files under `out/timeline/`
 - [ ] Test 27: `npx tsc --noEmit` reports zero errors
 - [ ] Test 28: `npm run lint` reports zero errors
-- [ ] Test 29: All 7 `/timeline/[slug]` URLs render correct year and title
+- [ ] Test 29: All 7 `/timeline/[slug]` URLs render correct `<title>` and `<h1>` heading
+- [ ] Test 29b: `entry.description` text is NOT present (not visible) on any of the 7 event pages
 - [ ] Test 30: `/timeline/unknown-slug` returns the static 404 page
 - [ ] Test 31: Each of the 7 dropdown event links navigates to the correct `/timeline/[slug]`
 - [ ] Test 32: "Timeline Overview" link navigates to `/#timeline`
 - [ ] Test 33: Mobile sub-list expands, event link navigates correctly, hamburger closes
-- [ ] Test 34: Full WAI-ARIA Menu Button keyboard pattern verified (↑↓, Home, End, Escape, Tab, focus return)
+- [ ] Test 34: Full WAI-ARIA Menu Button keyboard pattern verified (↑↓, Home, End, Escape, Tab, ArrowDown from trigger focuses first item, focus return after Escape)
 - [ ] Test 35: `aria-expanded` toggles correctly on the Timeline trigger
-- [ ] Test 36: `imageAlt` text is visible DOM content on all 7 event pages
-- [ ] Test 37: Lighthouse accessibility score ≥ 95 on event detail pages
+- [ ] Test 36: `imageAlt` text is visible DOM content on all 7 event pages (uses `page.getByText()`)
+- [ ] Test 37: Lighthouse accessibility score ≥ 95; `lighthouserc.json` updated to include `/timeline/chernobyl` in `url` array
 - [ ] Test 38: All `stats[].sourceId` values match existing entries in `exhibitData.sources`
 - [ ] Test 39: Prev/next navigation correct through all 7 events in sequence
 - [ ] Test 40: Chicago Pile-1 page has no prev link
@@ -461,7 +503,7 @@ out/timeline/nuclear-renaissance/index.html
 - [ ] Test 46: Mobile sub-list visible with 8 links; no horizontal overflow
 - [ ] Acceptance criterion 1: 7 pre-rendered pages reachable by URL
 - [ ] Acceptance criterion 2: 2–3 sourced stat cards on every event page
-- [ ] Acceptance criterion 3: No prose paragraphs on any event page
+- [ ] Acceptance criterion 3: No prose paragraphs on any event page (verified by Test 29b)
 - [ ] Acceptance criterion 4: Dropdown keyboard navigation fully functional
 - [ ] Acceptance criterion 5: Prev/next/back navigation present and correct on all event pages
 - [ ] No `--color-accent-cyan` on any light background

@@ -104,6 +104,24 @@ Create `app/timeline/[slug]/page.tsx`.
 
 This is an async server component. Do not add `"use client"`.
 
+**Required imports for `app/timeline/[slug]/page.tsx`:**
+
+```ts
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { exhibitData } from "@/lib/exhibit-data";
+import { SourceBadge } from "@/components/ui/source-badge";
+import { EventNav } from "@/components/ui/event-nav";
+// prefixAssetPath() is imported but used only when a real next/image src
+// is added in a future pass — leave the import in place as a reminder.
+import { prefixAssetPath } from "@/lib/asset-path";
+```
+
+> **Note:** `prefixAssetPath` will produce a lint "unused variable" warning
+> until a real `next/image` is added. Suppress with a void call or an
+> `// eslint-disable-next-line` comment on that import line if linting fails.
+
 #### 3a. `generateStaticParams`
 
 Export `generateStaticParams()` so Next.js pre-renders all 7 event pages at
@@ -221,17 +239,25 @@ exact structure:
 
 **Content Grid:**
 
-Two-column grid on desktop/tablet, single column on mobile:
+Two-column grid on desktop/tablet, single column on mobile. Use Tailwind
+responsive utilities for the `grid-template-columns` because inline `style`
+prop cannot contain media queries:
 
 ```tsx
-<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-8)" }}>
+<div
+  className="grid grid-cols-1 md:grid-cols-2"
+  style={{ gap: "var(--space-8)" }}
+>
   {/* Left column: image placeholder */}
   {/* Right column: stat cards */}
 </div>
 ```
 
-Use a responsive CSS approach (media query or Tailwind responsive utility) to
-collapse to a single column below the tablet breakpoint (768 px).
+`grid-cols-1` is the default (single column, all viewport widths). `md:grid-cols-2`
+applies `grid-template-columns: repeat(2, minmax(0, 1fr))` at ≥ 768 px, matching
+the tablet breakpoint specified in the spec. Do **not** set `gridTemplateColumns`
+inside the `style` prop — it will hard-code a 2-column layout on every viewport
+and override the Tailwind responsive class.
 
 **Image Placeholder (left column):**
 
@@ -407,6 +433,8 @@ out/timeline/nuclear-renaissance/index.html
 - [ ] Source badges row renders one `<SourceBadge>` per `entry.sourceIds` entry
 - [ ] `<EventNav>` rendered at the bottom with correct `prevEntry` and `nextEntry`
 - [ ] Content max-width is `var(--grid-max-width)` centered with `var(--space-6)` outer padding
+- [ ] Content grid uses `className="grid grid-cols-1 md:grid-cols-2"` — `gridTemplateColumns` is **not** set in the `style` prop
+- [ ] All required imports present in `page.tsx`: `Metadata`, `notFound`, `Link`, `exhibitData`, `SourceBadge`, `EventNav`, `prefixAssetPath`
 - [ ] No hardcoded color values — all values use CSS custom properties
 - [ ] All 7 `out/timeline/[slug]/index.html` files produced by build
 - [ ] `npx tsc --noEmit` reports zero errors

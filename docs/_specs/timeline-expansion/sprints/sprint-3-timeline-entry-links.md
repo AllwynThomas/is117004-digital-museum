@@ -62,45 +62,101 @@ export function TimelineEntry({
 }: TimelineEntryProps) {
 ```
 
-**d. Wrap the year `<p>` and title `<h3>` in a `<Link>` when `slug` is
+**d. Wrap the year `<p>` and title `<h3>` in `<Link>` elements when `slug` is
 provided.**
 
-The spec requires both the year numeral and the event title to be wrapped
-together in a single link. The link must:
+The existing component uses an `md:grid-cols-[120px_1fr]` grid where the year
+`<p>` occupies the 120 px column and a `<div>` containing the title `<h3>` and
+description `<p>` occupies the 1fr column. A single `<Link>` wrapping both year
+and title would collapse both grid cells into one element, making the title
+render inside the 120 px column. To preserve the exact layout, use **two
+separate `<Link>` elements pointing to the same destination** — one around the
+year, one around the title.
+
+Each link must:
 
 - Use Next.js `<Link href={\`/timeline/${slug}\`}>`.
-- Apply `no-underline` by default on the dark background.
+- Apply `no-underline` by default.
 - Apply `underline` on hover.
 - Inherit the existing year/title text color from the parent element — do not
   add new color tokens.
 - Have no `border-radius` (Swiss style).
 
-Implement this as a conditional wrapper. When `slug` is defined, wrap:
+Implement conditionally. When `slug` is defined:
 
 ```tsx
+{/* Year numeral */}
 {slug ? (
-  <Link
-    href={`/timeline/${slug}`}
-    className="group no-underline"
-  >
-    {/* year numeral */}
-    <p className={cn("... existing year classes ...", "group-hover:underline")}>
+  <Link href={`/timeline/${slug}`} className="no-underline hover:underline">
+    <p
+      className={cn(
+        "text-[length:var(--font-size-section)] font-extrabold leading-none md:text-right",
+        isDark
+          ? "text-[var(--color-accent-cyan)]"
+          : "text-[var(--color-accent-blue)]",
+      )}
+    >
       {year}
     </p>
-    {/* title heading */}
-    <h3 className={cn("... existing title classes ...", "group-hover:underline")}>
-      {title}
-    </h3>
   </Link>
 ) : (
-  <>
-    {/* year numeral — existing, unchanged */}
-    <p className="... existing year classes ...">{year}</p>
-    {/* title heading — existing, unchanged */}
-    <h3 className="... existing title classes ...">{title}</h3>
-  </>
+  <p
+    className={cn(
+      "text-[length:var(--font-size-section)] font-extrabold leading-none md:text-right",
+      isDark
+        ? "text-[var(--color-accent-cyan)]"
+        : "text-[var(--color-accent-blue)]",
+    )}
+  >
+    {year}
+  </p>
 )}
+
+{/* Content */}
+<div>
+  {slug ? (
+    <Link href={`/timeline/${slug}`} className="no-underline hover:underline">
+      <h3
+        className={cn(
+          "text-[length:var(--font-size-sub)] font-bold leading-tight mb-[var(--space-2)]",
+          isDark
+            ? "text-[var(--color-text-on-dark)]"
+            : "text-[var(--color-text-primary)]",
+        )}
+      >
+        {title}
+      </h3>
+    </Link>
+  ) : (
+    <h3
+      className={cn(
+        "text-[length:var(--font-size-sub)] font-bold leading-tight mb-[var(--space-2)]",
+        isDark
+          ? "text-[var(--color-text-on-dark)]"
+          : "text-[var(--color-text-primary)]",
+      )}
+    >
+      {title}
+    </h3>
+  )}
+  <p
+    className={cn(
+      "text-[length:var(--font-size-body)] leading-relaxed",
+      isDark
+        ? "text-[var(--color-text-secondary-on-dark)]"
+        : "text-[var(--color-text-secondary)]",
+    )}
+  >
+    {description}
+  </p>
+</div>
 ```
+
+> **Why two links instead of one?** The existing grid requires the year `<p>`
+> to be a direct grid child in the 120 px column and the title `<h3>` to remain
+> inside the content `<div>` in the 1fr column. A single `<Link>` wrapping
+> both would collapse them into one grid cell, breaking the layout. Two links
+> to the same destination is a well-established card-linking pattern.
 
 > **Backwards compatibility:** when `slug` is not provided, the component
 > renders identically to its current implementation — the year `<p>` and
@@ -108,9 +164,8 @@ Implement this as a conditional wrapper. When `slug` is defined, wrap:
 > "When slug is not provided, the component behaves identically to its current
 > implementation."
 
-> **Layout:** no spacing or layout changes are introduced beyond the link
-> wrapper itself. The `description` `<p>` remains outside the link and
-> unchanged.
+> **Layout:** no spacing or layout changes are introduced. The `description`
+> `<p>` remains inside the content `<div>` and unchanged.
 
 **Verify:**
 
@@ -187,13 +242,16 @@ Expected outcomes:
 - [ ] `import Link from "next/link"` added to `components/ui/timeline-entry.tsx`
 - [ ] `slug?: string` added to `TimelineEntryProps` interface
 - [ ] `slug` destructured in `TimelineEntry` function signature
-- [ ] Year `<p>` and title `<h3>` wrapped in `<Link href={\`/timeline/${slug}\`}>` when `slug` is defined
-- [ ] Link has no underline by default; underline on hover
-- [ ] Link inherits existing color tokens — no new color values introduced
-- [ ] No `border-radius` on the link wrapper
+- [ ] Year `<p>` wrapped in `<Link href={\`/timeline/${slug}\`}>` when `slug` is defined; renders as plain `<p>` when `slug` is not provided
+- [ ] Title `<h3>` wrapped in `<Link href={\`/timeline/${slug}\`}>` when `slug` is defined; renders as plain `<h3>` when `slug` is not provided
+- [ ] Each link has no underline by default; underline on hover
+- [ ] Each link inherits existing color tokens — no new color values introduced
+- [ ] No `border-radius` on either link wrapper
+- [ ] Both links point to the same `/timeline/${slug}` destination (same-destination two-link pattern)
+- [ ] Existing grid structure preserved — year `<p>` remains in the 120 px column; title `<h3>` remains inside the content `<div>` in the 1fr column
 - [ ] When `slug` is not provided, the component renders identically to its pre-Sprint-3 state (backwards-compatible)
-- [ ] `description` `<p>` remains outside the link and is unchanged
-- [ ] No layout or spacing changes beyond the link wrapper
+- [ ] `description` `<p>` remains inside the content `<div>` and is unchanged
+- [ ] No layout or spacing changes
 - [ ] `app/page.tsx` passes `slug={entry.slug}` to each `<TimelineEntry>` in the timeline map
 - [ ] No other changes made to `app/page.tsx`
 - [ ] `npx tsc --noEmit` reports zero errors
