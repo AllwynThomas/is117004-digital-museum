@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useCallback, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
-import { SourceBadge } from "@/components/ui/source-badge";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -59,8 +58,10 @@ export function ExhibitImage({
   const imageSrc =
     prefersReducedMotion && reducedMotionSrc ? reducedMotionSrc : src;
 
+  const sourceMeta = `Source / ${sourceName}`;
+
   return (
-    <figure className={cn("space-y-[var(--space-3)]", className)}>
+    <figure className={cn("space-y-[var(--space-4)]", className)}>
       <div className="relative w-full min-w-0">
         <Image
           src={prefixSrc(imageSrc)}
@@ -74,18 +75,39 @@ export function ExhibitImage({
       </div>
       <figcaption
         className={cn(
-          "flex flex-wrap items-baseline gap-[var(--space-2)] text-[length:var(--font-size-caption)]",
+          "grid gap-[var(--space-2)] border-t border-[var(--color-surface-rule)] pt-[var(--space-3)] text-[length:var(--font-size-caption)] md:grid-cols-[minmax(0,1fr)_auto] md:items-baseline",
           variant === "dark"
             ? "text-[var(--color-text-secondary-on-dark)]"
             : "text-[var(--color-text-secondary)]",
         )}
       >
         <span>{caption}</span>
-        <SourceBadge
-          sourceName={sourceName}
-          sourceUrl={sourceUrl}
-          variant={variant}
-        />
+        {sourceUrl ? (
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "text-[0.72rem] font-medium uppercase tracking-[0.18em] no-underline transition-opacity hover:opacity-70",
+              variant === "dark"
+                ? "text-[var(--color-text-on-dark)]"
+                : "text-[var(--color-text-primary)]",
+            )}
+          >
+            {sourceMeta}
+          </a>
+        ) : (
+          <span
+            className={cn(
+              "text-[0.72rem] font-medium uppercase tracking-[0.18em]",
+              variant === "dark"
+                ? "text-[var(--color-text-on-dark)]"
+                : "text-[var(--color-text-primary)]",
+            )}
+          >
+            {sourceMeta}
+          </span>
+        )}
       </figcaption>
     </figure>
   );

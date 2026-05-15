@@ -67,6 +67,17 @@ export const exhibitData: ExhibitData = {
     {
       id: "hero",
       title: "The Power of Nuclear Energy",
+      eyebrow: "Museum Entrance",
+      lede:
+        "Explore the history, science, and boundless potential of nuclear energy through interactive exhibits and a historical timeline.",
+      bodyContent:
+        "Start with the core idea, then move through energy density, reactor science, safety, the fuel cycle, and the history that brought nuclear power to the modern grid.",
+      sourceIds: [],
+      accentColor: "--color-accent-cyan",
+    },
+    {
+      id: "energy-density",
+      title: "Energy Density",
       eyebrow: "Exhibit Opening",
       lede: "What if one fuel pellet could replace a ton of coal?",
       bodyContent:
@@ -94,7 +105,7 @@ export const exhibitData: ExhibitData = {
     },
     {
       id: "benefits",
-      title: "Why Nuclear Beats Fossil Fuels",
+      title: "Nuclear vs Fossil Fuels",
       eyebrow: "The Evidence",
       lede: "When measured by deaths per unit of energy, greenhouse gas emissions per kilowatt-hour, and capacity factor, nuclear power consistently ranks among the safest and cleanest sources of electricity available today.",
       bodyContent:
@@ -495,6 +506,17 @@ export const exhibitData: ExhibitData = {
         "Explain how spent nuclear fuel is safely stored and managed after use in a reactor.",
       notes: "Authoritative NRC overview of wet and dry storage methods.",
       licenseNote: "Public agency source; verify any graphic reuse terms.",
+    },
+    {
+      id: "generation_atomic_spent_fuel",
+      type: "image_reference",
+      title: "Why Nuclear? Spent Fuel Volume Graphic",
+      sourceUrl: "https://www.generationatomic.org/why-nuclear/",
+      recommendedUse:
+        "Credit the spent fuel football-field comparison visual used in the safety section.",
+      notes:
+        "Generation Atomic source page used for the spent nuclear fuel volume infographic.",
+      licenseNote: "Verify reuse permission before publication.",
     },
     {
       id: "eia_nuclear_explained",

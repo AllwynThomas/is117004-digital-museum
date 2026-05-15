@@ -65,6 +65,54 @@ test.describe("Content integrity audit", () => {
 });
 
 test.describe("Responsive layout verification", () => {
+  test("desktop nav anchor lands the section directly below the sticky header", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    const header = page.locator("header");
+    const benefitsLink = page
+      .locator('header nav[aria-label="Exhibit sections"] a[href="#benefits"]')
+      .first();
+    const benefitsSection = page.locator("section#benefits");
+
+    await benefitsLink.click();
+    await page.waitForFunction(() => window.location.hash === "#benefits");
+    await page.waitForTimeout(1200);
+
+    const headerBox = await header.boundingBox();
+    const sectionBox = await benefitsSection.boundingBox();
+
+    expect(headerBox).toBeTruthy();
+    expect(sectionBox).toBeTruthy();
+    expect(Math.abs(sectionBox!.y - headerBox!.height)).toBeLessThanOrEqual(2);
+  });
+
+  test("desktop nav highlight follows the visible section while scrolling", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/");
+    await page.waitForLoadState("networkidle");
+
+    const headerNav = page.locator('header nav[aria-label="Exhibit sections"]').first();
+    const homeLink = headerNav.locator('a[href="#hero"]');
+    const benefitsLink = headerNav.locator('a[href="#benefits"]');
+    const timelineLink = headerNav.locator('a[href="#timeline"]');
+
+    await expect(homeLink).toHaveClass(/font-semibold/);
+
+    await page.locator("#benefits").scrollIntoViewIfNeeded();
+    await expect(benefitsLink).toHaveClass(/font-semibold/);
+    await expect(homeLink).not.toHaveClass(/font-semibold/);
+
+    await page.locator("#timeline").scrollIntoViewIfNeeded();
+    await expect(timelineLink).toHaveClass(/font-semibold/);
+    await expect(benefitsLink).not.toHaveClass(/font-semibold/);
+  });
+
   test("desktop (1440x900) — no horizontal overflow", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto("/");
@@ -130,12 +178,13 @@ test.describe("Responsive layout verification", () => {
     await expect(mobileNav).not.toBeVisible();
   });
 
-  test("all 7 sections render on the page", async ({ page }) => {
+  test("all 8 sections render on the page", async ({ page }) => {
     await page.goto("/");
     await page.waitForLoadState("networkidle");
 
     const sectionIds = [
       "hero",
+      "energy-density",
       "how-it-works",
       "benefits",
       "safety",
