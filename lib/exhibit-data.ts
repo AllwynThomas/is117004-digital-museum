@@ -29,9 +29,12 @@ export interface TimelineEntry {
   year: number | string;
   title: string;
   description: string;
+  details: string;
   sourceIds: string[];
   slug: string;
+  imageSrc: string;
   imageAlt: string;
+  imageSourceUrl: string;
   stats: TimelineStat[];
 }
 
@@ -198,13 +201,17 @@ export const exhibitData: ExhibitData = {
       title: "Chicago Pile-1",
       description:
         "First controlled nuclear chain reaction, achieved by Enrico Fermi's team at the University of Chicago. Proved that sustained fission was possible.",
-      sourceIds: ["iaea_nuclear_power_topic"],
+      details:
+        "Built by a team led by Enrico Fermi under the stands of an abandoned university sports stadium, Chicago Pile-1 achieved the world's first artificial, self-sustaining nuclear chain reaction. This monumental experiment proved the theoretical physics of nuclear fission could be controlled, marking the dawn of the Atomic Age.",
+      sourceIds: ["atomic_heritage_chicago_pile_1"],
       slug: "chicago-pile-1",
+      imageSrc: "/assets/images/chicago-pile-1.jpg",
       imageAlt: "Photograph of Chicago Pile-1 under construction at Stagg Field, University of Chicago, 1942",
+      imageSourceUrl: "https://en.wikipedia.org/wiki/Chicago_Pile-1",
       stats: [
-        { value: "200 W", label: "Peak Power Output", sourceId: "iaea_nuclear_power_topic" },
-        { value: "45", label: "Team Members", sourceId: "iaea_nuclear_power_topic" },
-        { value: "Dec 2, 1942", label: "Date of First Criticality", sourceId: "iaea_nuclear_power_topic" },
+        { value: "200 W", label: "Peak Power Output", sourceId: "atomic_heritage_chicago_pile_1" },
+        { value: "~30", label: "Team Members", sourceId: "atomic_heritage_chicago_pile_1" },
+        { value: "0", label: "Shielding and Cooling Systems", sourceId: "atomic_heritage_chicago_pile_1" },
       ],
     },
     {
@@ -212,13 +219,17 @@ export const exhibitData: ExhibitData = {
       title: "Obninsk, USSR",
       description:
         "First nuclear power plant connected to an electrical grid. A 5-megawatt reactor demonstrated that nuclear fission could generate usable electricity.",
-      sourceIds: ["iaea_nuclear_power_topic"],
+      details:
+        "Located at the Institute of Physics and Power Engineering, the Obninsk facility became the world's first nuclear power plant to successfully connect to an external electrical grid. It transitioned nuclear technology away from wartime weaponry and demonstrated the industrial viability of peaceful atomic energy.",
+      sourceIds: ["wikipedia_obninsk_plant"],
       slug: "obninsk-ussr",
+      imageSrc: "/assets/images/obninsk.jpg",
       imageAlt: "Interior of the Obninsk Nuclear Power Plant reactor hall, USSR",
+      imageSourceUrl: "https://being-light.com/en/projects/the-worlds-first-nuclear-power-plant/",
       stats: [
-        { value: "5 MW", label: "Reactor Capacity", sourceId: "iaea_nuclear_power_topic" },
-        { value: "1954", label: "Year First Grid-Connected", sourceId: "iaea_nuclear_power_topic" },
-        { value: "48 years", label: "Years in Operation", sourceId: "iaea_nuclear_power_topic" },
+        { value: "5 MWe", label: "Reactor's Electric Output", sourceId: "wikipedia_obninsk_plant" },
+        { value: "5%", label: "Uranium-235 Enrichment in Fuel Rods", sourceId: "wikipedia_obninsk_plant" },
+        { value: "48 years", label: "Years in Operation", sourceId: "wikipedia_obninsk_plant" },
       ],
     },
     {
@@ -226,13 +237,17 @@ export const exhibitData: ExhibitData = {
       title: "Shippingport, Pennsylvania",
       description:
         "First full-scale commercial nuclear power plant in the United States. Operated for 25 years, proving the viability of civilian nuclear power.",
-      sourceIds: ["iaea_nuclear_power_topic"],
+      details:
+        "Commissioned under President Eisenhower's \"Atoms for Peace\" initiative, Shippingport was the first full-scale commercial nuclear power plant built exclusively for civilian electricity in the United States. Its legacy includes pioneering light-water reactor designs that became the global standard.",
+      sourceIds: ["wikipedia_shippingport_station"],
       slug: "shippingport",
+      imageSrc: "/assets/images/shippingport.jpg",
       imageAlt: "Aerial photograph of Shippingport Atomic Power Station, Pennsylvania",
+      imageSourceUrl: "https://www.historic-structures.com/pa/shippingport/shippingport_nuclear_power5.php",
       stats: [
-        { value: "60 MW", label: "Plant Capacity", sourceId: "iaea_nuclear_power_topic" },
-        { value: "1958", label: "Year Commercial Operations Began", sourceId: "iaea_nuclear_power_topic" },
-        { value: "25 years", label: "Years of Operation", sourceId: "iaea_nuclear_power_topic" },
+        { value: "300,000", label: "Homes Powered Per Year", sourceId: "wikipedia_shippingport_station" },
+        { value: "7.4 Billion kWh", label: "Cumulative Amount of Electricity Generated", sourceId: "wikipedia_shippingport_station" },
+        { value: "25 years", label: "Years of Operation", sourceId: "wikipedia_shippingport_station" },
       ],
     },
     {
@@ -240,13 +255,17 @@ export const exhibitData: ExhibitData = {
       title: "Three Mile Island",
       description:
         "Partial meltdown of a reactor in Pennsylvania. No deaths resulted. The accident led to sweeping safety reforms across the U.S. nuclear industry.",
-      sourceIds: ["ourworldindata_chernobyl_fukushima"],
+      details:
+        "A combination of a mechanical failure in the secondary cooling system and operator confusion led to a partial meltdown of the Unit 2 reactor at Three Mile Island. While the containment building successfully prevented significant environmental contamination, the incident permanently altered public perception and halted the expansion of U.S. nuclear power for decades.",
+      sourceIds: ["world_nuclear_three_mile_island"],
       slug: "three-mile-island",
+      imageSrc: "/assets/images/3-mile-island.jpg",
       imageAlt: "Aerial view of Three Mile Island cooling towers, Dauphin County, Pennsylvania",
+      imageSourceUrl: "https://technical.ly/civic-news/three-mile-island-microsoft-ai-pennsylvania/",
       stats: [
-        { value: "0", label: "Radiation Deaths", sourceId: "ourworldindata_chernobyl_fukushima" },
-        { value: "14 years", label: "Duration of Cleanup", sourceId: "ourworldindata_chernobyl_fukushima" },
-        { value: "1979", label: "Year Safety Reforms Enacted", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "0", label: "Radiation Deaths", sourceId: "world_nuclear_three_mile_island" },
+        { value: "14 years", label: "Duration of Cleanup", sourceId: "world_nuclear_three_mile_island" },
+        { value: "1 Chest X-ray", label: "Average Radiation Dose Received Within 10 Miles", sourceId: "world_nuclear_three_mile_island" },
       ],
     },
     {
@@ -254,9 +273,13 @@ export const exhibitData: ExhibitData = {
       title: "Chernobyl",
       description:
         "Worst nuclear accident in history, caused by design flaws and operator errors during a safety test. Led to a global overhaul of nuclear safety standards and reactor design.",
+      details:
+        "A flawed reactor design coupled with a poorly managed safety test resulted in a massive steam explosion and open-air graphite fire at the Chernobyl nuclear plant in Ukraine. The disaster released a vast radioactive plume across Europe, forcing a massive, permanent evacuation and exposing critical failures in Soviet industrial safety and transparency.",
       sourceIds: ["ourworldindata_chernobyl_fukushima"],
       slug: "chernobyl",
+      imageSrc: "/assets/images/chernobyl.jpg",
       imageAlt: "Chernobyl Reactor 4 New Safe Confinement structure, Chornobyl Exclusion Zone",
+      imageSourceUrl: "https://www.bbc.com/future/article/20170101-a-new-tomb-for-the-most-dangerous-disaster-site-in-the-world",
       stats: [
         { value: "31", label: "Acute Deaths (WHO)", sourceId: "ourworldindata_chernobyl_fukushima" },
         { value: "~4,000", label: "Long-Term Projected Deaths (WHO)", sourceId: "ourworldindata_chernobyl_fukushima" },
@@ -268,12 +291,16 @@ export const exhibitData: ExhibitData = {
       title: "Fukushima Daiichi",
       description:
         "Tsunami-caused meltdowns at three reactors in Japan. Zero deaths from radiation exposure. The accident prompted worldwide safety reviews and reinforced the importance of natural-disaster preparedness in plant design.",
+      details:
+        "Following a catastrophic magnitude 9.0 earthquake, a massive 15-meter tsunami breached the seawalls of the Fukushima Daiichi plant, knocking out the emergency diesel generators responsible for reactor cooling systems. Without power, three cores melted down in the worst nuclear accident since Chernobyl, prompting a global re-evaluation of seismic and environmental risks for nuclear infrastructure.",
       sourceIds: ["ourworldindata_chernobyl_fukushima"],
       slug: "fukushima-daiichi",
+      imageSrc: "/assets/images/fukushima.jpg",
       imageAlt: "Aerial view of Fukushima Daiichi nuclear power plant following the March 2011 tsunami",
+      imageSourceUrl: "https://www.ibtimes.co.uk/fukushima-disaster-facts-figures-what-happened-what-were-effects-nuclear-meltdown-1547993",
       stats: [
         { value: "0", label: "Confirmed Radiation Deaths", sourceId: "ourworldindata_chernobyl_fukushima" },
-        { value: "3", label: "Reactors Affected", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "19,500", label: "Confirmed Earthquake & Tsunami Deaths", sourceId: "ourworldindata_chernobyl_fukushima" },
         { value: "154,000", label: "People Evacuated", sourceId: "ourworldindata_chernobyl_fukushima" },
       ],
     },
@@ -282,9 +309,13 @@ export const exhibitData: ExhibitData = {
       title: "Nuclear Renaissance",
       description:
         "Small Modular Reactors enter the licensing pipeline. AI data center demand drives renewed investment. Net-zero commitments bring nuclear back to the center of energy planning worldwide.",
-      sourceIds: ["doe_smr_overview", "deloitte_data_center_nuclear"],
+      details:
+        "The explosive rise of AI workloads and massive hyperscale datacenters has created an unprecedented surge in global electricity demand. To secure 24/7 carbon-free power, tech giants are driving a nuclear renaissance by partnering with utilities to deploy Small Modular Reactors (SMRs) directly onto the grid.",
+      sourceIds: ["doe_smr_overview", "global_electricity_partnership_datacenters"],
       slug: "nuclear-renaissance",
+      imageSrc: "/assets/images/SMR.webp",
       imageAlt: "Conceptual rendering of a Small Modular Reactor facility",
+      imageSourceUrl: "https://www.gevernova.com/nuclear/carbon-free-power/bwrx-300-small-modular-reactor",
       stats: [
         { value: "6+", label: "SMRs in NRC Licensing Pipeline", sourceId: "doe_smr_overview" },
         { value: "~30%", label: "Annual Data Center Power Demand Growth", sourceId: "deloitte_data_center_nuclear" },
@@ -621,6 +652,63 @@ export const exhibitData: ExhibitData = {
       notes:
         "Covers NuScale design approval, DOE R&D program, and deployment timeline.",
       licenseNote: "Public agency source; suitable for citation and reference.",
+    },
+    {
+      id: "atomic_heritage_chicago_pile_1",
+      type: "historical_reference",
+      title: "Chicago Pile 1",
+      sourceUrl: "https://ahf.nuclearmuseum.org/ahf/history/chicago-pile-1/",
+      recommendedUse:
+        "Technical specifications and historical milestone framing for the first self-sustaining chain reaction.",
+      notes:
+        "Excellent for validating structural materials, dimensions, and reactor weights.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "wikipedia_obninsk_plant",
+      type: "historical_reference",
+      title: "Obninsk Nuclear Power Plant",
+      sourceUrl: "https://en.wikipedia.org/wiki/Obninsk_Nuclear_Power_Plant",
+      recommendedUse:
+        "Technical parameters, lifespans, and enrichment statistics for the first grid-connected reactor.",
+      notes:
+        "Cross-referenced with Soviet atomic history archives for baseline operational data.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "wikipedia_shippingport_station",
+      type: "historical_reference",
+      title: "Shippingport Atomic Power Station",
+      sourceUrl:
+        "https://en.wikipedia.org/wiki/Shippingport_Atomic_Power_Station",
+      recommendedUse:
+        "Financial tracking, reactor core variations, and experimental breeder ratios.",
+      notes:
+        "Highlights the transition from civilian light-water models to thorium breeding core experiments.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "world_nuclear_three_mile_island",
+      type: "historical_reference",
+      title: "Three Mile Island Accident",
+      sourceUrl:
+        "https://world-nuclear.org/information-library/safety-and-security/safety-of-plants/three-mile-island-accident",
+      recommendedUse:
+        "Authoritative core damage statistics and radiation exposure metrics for the 1979 event.",
+      notes:
+        "Essential for dispelling common misconceptions regarding local health impacts.",
+      licenseNote: "Verify reuse permission before publication.",
+    },
+    {
+      id: "global_electricity_partnership_datacenters",
+      type: "historical_reference",
+      title: "Data Centers Energy Consumption Trends",
+      sourceUrl:
+        "https://www.globalelectricity.org/data-centers-energy-consumption/",
+      recommendedUse:
+        "Mapping global power spikes driven by AI training runs and compute infrastructure.",
+      notes: "Captures the shifting grid demand paradigm of the mid-2020s.",
+      licenseNote: "Verify reuse permission before publication.",
     },
   ],
 };

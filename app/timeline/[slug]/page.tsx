@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { exhibitData } from "@/lib/exhibit-data";
 import { SourceBadge } from "@/components/ui/source-badge";
 import { EventNav } from "@/components/ui/event-nav";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { prefixAssetPath } from "@/lib/asset-path";
 
 export async function generateStaticParams() {
@@ -120,38 +120,51 @@ export default async function Page({
           className="grid grid-cols-1 md:grid-cols-2"
           style={{ gap: "var(--space-8)" }}
         >
-          {/* Left column: image placeholder */}
+          {/* Left column: image */}
           <div>
             <div
               style={{
+                position: "relative",
                 aspectRatio: "16 / 9",
                 border: "1px solid var(--color-surface-rule)",
-                borderRadius: 0,
-                background: "var(--color-bg-tertiary)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                overflow: "hidden",
               }}
             >
-              <span
-                style={{
-                  color: "var(--color-text-secondary)",
-                  fontSize: "var(--font-size-caption)",
-                }}
-              >
-                {/* prefixAssetPath() from lib/asset-path.ts must be used when a real
-                    next/image src is added here in a future pass */}
-                [Image: {entry.imageAlt}]
-              </span>
+              <Image
+                src={prefixAssetPath(entry.imageSrc)}
+                alt={entry.imageAlt}
+                fill
+                style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
             </div>
             <p
               style={{
                 fontSize: "var(--font-size-caption)",
                 color: "var(--color-text-secondary)",
                 marginTop: "var(--space-2)",
+                marginBottom: 0,
               }}
             >
-              {entry.imageAlt}
+              <a
+                href={entry.imageSourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "inherit", textDecoration: "underline" }}
+              >
+                {entry.imageAlt}
+              </a>
+            </p>
+            <p
+              style={{
+                fontSize: "var(--font-size-body)",
+                color: "var(--color-text-secondary)",
+                marginTop: "var(--space-4)",
+                marginBottom: 0,
+                lineHeight: 1.6,
+              }}
+            >
+              {entry.details}
             </p>
           </div>
 

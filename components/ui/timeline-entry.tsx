@@ -21,13 +21,8 @@ export function TimelineEntry({
 }: TimelineEntryProps) {
   const isDark = variant === "dark";
 
-  return (
-    <div
-      className={cn(
-        "relative grid gap-[var(--space-6)] pl-[var(--space-8)] md:grid-cols-[120px_1fr] md:gap-[var(--space-8)] md:pl-0",
-        className,
-      )}
-    >
+  const inner = (
+    <>
       {/* Vertical timeline rule — visible on mobile as a left border */}
       <div
         className={cn(
@@ -39,51 +34,24 @@ export function TimelineEntry({
       />
 
       {/* Year numeral */}
-      {slug ? (
-        <Link href={`/timeline/${slug}`} className="no-underline hover:underline">
-          <p
-            className={cn(
-              "text-[length:var(--font-size-section)] font-extrabold leading-none md:text-right",
-              isDark
-                ? "text-[var(--color-accent-cyan)]"
-                : "text-[var(--color-accent-blue)]",
-            )}
-          >
-            {year}
-          </p>
-        </Link>
-      ) : (
-        <p
-          className={cn(
-            "text-[length:var(--font-size-section)] font-extrabold leading-none md:text-right",
-            isDark
-              ? "text-[var(--color-accent-cyan)]"
-              : "text-[var(--color-accent-blue)]",
-          )}
-        >
-          {year}
-        </p>
-      )}
+      <p
+        className={cn(
+          "text-[length:var(--font-size-section)] font-extrabold leading-none md:text-right",
+          isDark
+            ? "text-[var(--color-accent-cyan)]"
+            : "text-[var(--color-accent-blue)]",
+        )}
+      >
+        {year}
+      </p>
 
       {/* Content */}
       <div>
-        {slug ? (
-          <Link href={`/timeline/${slug}`} className="no-underline hover:underline">
-            <h3
-              className={cn(
-                "text-[length:var(--font-size-sub)] font-bold leading-tight mb-[var(--space-2)]",
-                isDark
-                  ? "text-[var(--color-text-on-dark)]"
-                  : "text-[var(--color-text-primary)]",
-              )}
-            >
-              {title}
-            </h3>
-          </Link>
-        ) : (
+        <div className="flex items-baseline justify-between gap-[var(--space-3)]">
           <h3
             className={cn(
               "text-[length:var(--font-size-sub)] font-bold leading-tight mb-[var(--space-2)]",
+              slug && "group-hover:underline",
               isDark
                 ? "text-[var(--color-text-on-dark)]"
                 : "text-[var(--color-text-primary)]",
@@ -91,7 +59,20 @@ export function TimelineEntry({
           >
             {title}
           </h3>
-        )}
+          {slug && (
+            <span
+              className={cn(
+                "shrink-0 text-[length:var(--font-size-body)] font-semibold leading-none transition-transform duration-150 group-hover:translate-x-[3px]",
+                isDark
+                  ? "text-[var(--color-accent-cyan)]"
+                  : "text-[var(--color-accent-blue)]",
+              )}
+              aria-hidden="true"
+            >
+              →
+            </span>
+          )}
+        </div>
         <p
           className={cn(
             "text-[length:var(--font-size-body)] leading-relaxed",
@@ -103,6 +84,31 @@ export function TimelineEntry({
           {description}
         </p>
       </div>
+    </>
+  );
+
+  if (slug) {
+    return (
+      <Link
+        href={`/timeline/${slug}`}
+        className={cn(
+          "group relative grid gap-[var(--space-6)] pl-[var(--space-8)] md:grid-cols-[120px_1fr] md:gap-[var(--space-8)] md:pl-0 no-underline",
+          className,
+        )}
+      >
+        {inner}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className={cn(
+        "relative grid gap-[var(--space-6)] pl-[var(--space-8)] md:grid-cols-[120px_1fr] md:gap-[var(--space-8)] md:pl-0",
+        className,
+      )}
+    >
+      {inner}
     </div>
   );
 }

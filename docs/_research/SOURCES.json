@@ -225,6 +225,69 @@
       "recommended_use": "Build an interactive timeline of U.S. nuclear generation, capacity, and share of electricity.",
       "notes": "Best source for a clean chart-based timeline.",
       "license_note": "Public data source; suitable for attribution."
+    },
+    {
+      "id": "atomic_heritage_chicago_pile_1",
+      "type": "historical_reference",
+      "title": "Chicago Pile 1",
+      "source_url": "https://ahf.nuclearmuseum.org/ahf/history/chicago-pile-1/",
+      "recommended_use": "Technical specifications and historical milestone framing for the first self-sustaining chain reaction.",
+      "notes": "Excellent for validating structural materials, dimensions, and reactor weights.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "wikipedia_obninsk_plant",
+      "type": "historical_reference",
+      "title": "Obninsk Nuclear Power Plant",
+      "source_url": "https://en.wikipedia.org/wiki/Obninsk_Nuclear_Power_Plant",
+      "recommended_use": "Technical parameters, lifespans, and enrichment statistics for the first grid-connected reactor.",
+      "notes": "Cross-referenced with Soviet atomic history archives for baseline operational data.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "wikipedia_shippingport_station",
+      "type": "historical_reference",
+      "title": "Shippingport Atomic Power Station",
+      "source_url": "https://en.wikipedia.org/wiki/Shippingport_Atomic_Power_Station",
+      "recommended_use": "Financial tracking, reactor core variations, and experimental breeder ratios.",
+      "notes": "Highlights the transition from civilian light-water models to thorium breeding core experiments.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "world_nuclear_three_mile_island",
+      "type": "historical_reference",
+      "title": "Three Mile Island Accident",
+      "source_url": "https://world-nuclear.org/information-library/safety-and-security/safety-of-plants/three-mile-island-accident",
+      "recommended_use": "Authoritative core damage statistics and radiation exposure metrics for the 1979 event.",
+      "notes": "Essential for dispelling common misconceptions regarding local health impacts.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "our_world_in_data_chernobyl_toll",
+      "type": "historical_reference",
+      "title": "What was the death toll from Chernobyl and Fukushima?",
+      "source_url": "https://ourworldindata.org/what-was-the-death-toll-from-chernobyl-and-fukushima",
+      "recommended_use": "Direct empirical mortality rates and peer-reviewed safety assessments.",
+      "notes": "Ideal for data-driven, non-sensationalist museum displays regarding nuclear accidents.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "ncbi_fukushima_tsunami_height",
+      "type": "historical_reference",
+      "title": "The Fukushima Nuclear Accident: Insights and Lessons",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3246178/",
+      "recommended_use": "Precise wave height documentation and mechanical failure sequencing.",
+      "notes": "Peer-reviewed analysis hosted by PubMed Central mapping the physical parameters of the disaster.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
+      "id": "global_electricity_partnership_datacenters",
+      "type": "historical_reference",
+      "title": "Data Centers Energy Consumption Trends",
+      "source_url": "https://www.globalelectricity.org/data-centers-energy-consumption/",
+      "recommended_use": "Mapping global power spikes driven by AI training runs and compute infrastructure.",
+      "notes": "Captures the shifting grid demand paradigm of the mid-2020s.",
+      "license_note": "Verify reuse permission before publication."
     }
   ],
   "recommended_exhibit_sections": [
