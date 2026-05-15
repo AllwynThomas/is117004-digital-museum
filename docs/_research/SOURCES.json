@@ -41,11 +41,21 @@
       "license_note": "Verify reuse permission before publication."
     },
     {
+      "id": "generation_atomic_spent_fuel",
+      "type": "image",
+      "title": "Why Nuclear? Spent Fuel Volume Graphic",
+      "asset_path": "public/assets/images/nuclear_spent_fuel.png",
+      "source_url": "https://www.generationatomic.org/why-nuclear/",
+      "recommended_use": "Credit the safety-section infographic showing how compact the U.S. spent fuel inventory is compared with a football field.",
+      "notes": "Use as the visual source for the spent fuel volume comparison in the Safety section.",
+      "license_note": "Verify reuse permission before publication."
+    },
+    {
       "id": "nuclearplant_animation",
       "type": "animation",
       "title": "How a Nuclear Reactor Actually Works",
       "asset_path": "public/assets/images/nuclearplant.gif",
-      "source_url": "https://www.nei.org/fundamentals/how-a-nuclear-reactor-works",
+      "source_url": "https://www.nei.org/news/2019/how-reactor-actually-works",
       "recommended_use": "Explain reactor heat generation, steam production, turbine rotation, and electricity production.",
       "notes": "Best simple animation for understanding the core process of PWR reactor. Of the nation's 94 operating reactors, roughly one-third are boiling water reactors, while the rest are pressurized water reactors. Original 2019 article URL relocated; current NEI fundamentals page used.",
       "license_note": "Verify reuse permission before publication."
@@ -239,7 +249,7 @@
     },
     {
       "section_id": "benefits",
-      "title": "Why Nuclear Beats Fossil Fuels",
+      "title": "Nuclear vs Fossil Fuels",
       "best_sources": [
         "safest_cleanest_sources_chart",
         "iaea_clean_energy_pdf",
