@@ -19,11 +19,20 @@ export interface ExhibitSection {
   transitionText?: string;
 }
 
+export interface TimelineStat {
+  value: string;
+  label: string;
+  sourceId: string;
+}
+
 export interface TimelineEntry {
   year: number | string;
   title: string;
   description: string;
   sourceIds: string[];
+  slug: string;
+  imageAlt: string;
+  stats: TimelineStat[];
 }
 
 export interface ProcessStep {
@@ -190,6 +199,13 @@ export const exhibitData: ExhibitData = {
       description:
         "First controlled nuclear chain reaction, achieved by Enrico Fermi's team at the University of Chicago. Proved that sustained fission was possible.",
       sourceIds: ["iaea_nuclear_power_topic"],
+      slug: "chicago-pile-1",
+      imageAlt: "Photograph of Chicago Pile-1 under construction at Stagg Field, University of Chicago, 1942",
+      stats: [
+        { value: "200 W", label: "Peak Power Output", sourceId: "iaea_nuclear_power_topic" },
+        { value: "45", label: "Team Members", sourceId: "iaea_nuclear_power_topic" },
+        { value: "Dec 2, 1942", label: "Date of First Criticality", sourceId: "iaea_nuclear_power_topic" },
+      ],
     },
     {
       year: 1954,
@@ -197,6 +213,13 @@ export const exhibitData: ExhibitData = {
       description:
         "First nuclear power plant connected to an electrical grid. A 5-megawatt reactor demonstrated that nuclear fission could generate usable electricity.",
       sourceIds: ["iaea_nuclear_power_topic"],
+      slug: "obninsk-ussr",
+      imageAlt: "Interior of the Obninsk Nuclear Power Plant reactor hall, USSR",
+      stats: [
+        { value: "5 MW", label: "Reactor Capacity", sourceId: "iaea_nuclear_power_topic" },
+        { value: "1954", label: "Year First Grid-Connected", sourceId: "iaea_nuclear_power_topic" },
+        { value: "48 years", label: "Years in Operation", sourceId: "iaea_nuclear_power_topic" },
+      ],
     },
     {
       year: 1957,
@@ -204,6 +227,13 @@ export const exhibitData: ExhibitData = {
       description:
         "First full-scale commercial nuclear power plant in the United States. Operated for 25 years, proving the viability of civilian nuclear power.",
       sourceIds: ["iaea_nuclear_power_topic"],
+      slug: "shippingport",
+      imageAlt: "Aerial photograph of Shippingport Atomic Power Station, Pennsylvania",
+      stats: [
+        { value: "60 MW", label: "Plant Capacity", sourceId: "iaea_nuclear_power_topic" },
+        { value: "1958", label: "Year Commercial Operations Began", sourceId: "iaea_nuclear_power_topic" },
+        { value: "25 years", label: "Years of Operation", sourceId: "iaea_nuclear_power_topic" },
+      ],
     },
     {
       year: 1979,
@@ -211,6 +241,13 @@ export const exhibitData: ExhibitData = {
       description:
         "Partial meltdown of a reactor in Pennsylvania. No deaths resulted. The accident led to sweeping safety reforms across the U.S. nuclear industry.",
       sourceIds: ["ourworldindata_chernobyl_fukushima"],
+      slug: "three-mile-island",
+      imageAlt: "Aerial view of Three Mile Island cooling towers, Dauphin County, Pennsylvania",
+      stats: [
+        { value: "0", label: "Radiation Deaths", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "14 years", label: "Duration of Cleanup", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "1979", label: "Year Safety Reforms Enacted", sourceId: "ourworldindata_chernobyl_fukushima" },
+      ],
     },
     {
       year: 1986,
@@ -218,6 +255,13 @@ export const exhibitData: ExhibitData = {
       description:
         "Worst nuclear accident in history, caused by design flaws and operator errors during a safety test. Led to a global overhaul of nuclear safety standards and reactor design.",
       sourceIds: ["ourworldindata_chernobyl_fukushima"],
+      slug: "chernobyl",
+      imageAlt: "Chernobyl Reactor 4 New Safe Confinement structure, Chornobyl Exclusion Zone",
+      stats: [
+        { value: "31", label: "Acute Deaths (WHO)", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "~4,000", label: "Long-Term Projected Deaths (WHO)", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "600,000+", label: "Emergency Workers and Evacuees Affected", sourceId: "ourworldindata_chernobyl_fukushima" },
+      ],
     },
     {
       year: 2011,
@@ -225,6 +269,13 @@ export const exhibitData: ExhibitData = {
       description:
         "Tsunami-caused meltdowns at three reactors in Japan. Zero deaths from radiation exposure. The accident prompted worldwide safety reviews and reinforced the importance of natural-disaster preparedness in plant design.",
       sourceIds: ["ourworldindata_chernobyl_fukushima"],
+      slug: "fukushima-daiichi",
+      imageAlt: "Aerial view of Fukushima Daiichi nuclear power plant following the March 2011 tsunami",
+      stats: [
+        { value: "0", label: "Confirmed Radiation Deaths", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "3", label: "Reactors Affected", sourceId: "ourworldindata_chernobyl_fukushima" },
+        { value: "154,000", label: "People Evacuated", sourceId: "ourworldindata_chernobyl_fukushima" },
+      ],
     },
     {
       year: "2020s",
@@ -232,6 +283,13 @@ export const exhibitData: ExhibitData = {
       description:
         "Small Modular Reactors enter the licensing pipeline. AI data center demand drives renewed investment. Net-zero commitments bring nuclear back to the center of energy planning worldwide.",
       sourceIds: ["doe_smr_overview", "deloitte_data_center_nuclear"],
+      slug: "nuclear-renaissance",
+      imageAlt: "Conceptual rendering of a Small Modular Reactor facility",
+      stats: [
+        { value: "6+", label: "SMRs in NRC Licensing Pipeline", sourceId: "doe_smr_overview" },
+        { value: "~30%", label: "Annual Data Center Power Demand Growth", sourceId: "deloitte_data_center_nuclear" },
+        { value: "3×", label: "Global Capacity Target by 2050", sourceId: "iaea_nuclear_power_topic" },
+      ],
     },
   ],
   timelineClosingStatement:
