@@ -34,7 +34,11 @@ const SOURCE_CATEGORIES: SourceCategory[] = [
   },
   {
     label: "Media",
-    sourceIds: ["uranium_vs_fossil_fuels_diagram", "nuclearplant_animation"],
+    sourceIds: [
+      "uranium_vs_fossil_fuels_diagram",
+      "nuclearplant_animation",
+      "generation_atomic_spent_fuel",
+    ],
   },
 ];
 
@@ -50,6 +54,10 @@ const IMAGE_CREDITS = [
   {
     description: "How a nuclear reactor works animation",
     credit: "Nuclear Energy Institute (NEI)",
+  },
+  {
+    description: "Spent nuclear fuel volume infographic",
+    credit: "Generation Atomic",
   },
 ];
 

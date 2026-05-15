@@ -6,7 +6,8 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_SECTIONS = [
-  { id: "hero", label: "Hero" },
+  { id: "hero", label: "Home" },
+  { id: "energy-density", label: "Energy Density" },
   { id: "how-it-works", label: "How It Works" },
   { id: "benefits", label: "Benefits" },
   { id: "safety", label: "Safety" },
@@ -26,25 +27,54 @@ export function SiteHeader() {
 
     if (sectionElements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    const getHeaderHeight = () => {
+      const header = document.querySelector("header");
+      return header instanceof HTMLElement ? header.offsetHeight : 0;
+    };
 
-        if (visible.length > 0) {
-          setActiveSection(visible[0].target.id);
-        }
-      },
-      {
-        rootMargin: "-80px 0px -60% 0px",
-        threshold: 0,
-      },
-    );
+    const updateActiveSection = () => {
+      const headerHeight = getHeaderHeight();
+      const focusLine = headerHeight + window.innerHeight * 0.35;
 
-    sectionElements.forEach((el) => observer.observe(el));
+      const currentSection =
+        [...sectionElements]
+          .reverse()
+          .find((section) => {
+            const rect = section.getBoundingClientRect();
+            return rect.top <= focusLine && rect.bottom > focusLine;
+          }) ?? sectionElements[0];
 
-    return () => observer.disconnect();
+      setActiveSection((current) =>
+        current === currentSection.id ? current : currentSection.id,
+      );
+    };
+
+    let animationFrame = 0;
+
+    const scheduleUpdate = () => {
+      if (animationFrame !== 0) return;
+
+      animationFrame = window.requestAnimationFrame(() => {
+        animationFrame = 0;
+        updateActiveSection();
+      });
+    };
+
+    updateActiveSection();
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
+
+    return () => {
+      if (animationFrame !== 0) {
+        window.cancelAnimationFrame(animationFrame);
+      }
+
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
+    };
   }, []);
 
   const closeMobileMenu = useCallback(() => {
@@ -77,9 +107,10 @@ export function SiteHeader() {
       )}
     >
       <div
-        className="mx-auto flex items-center justify-between"
+        className="mx-auto flex items-center justify-between gap-[var(--space-4)]"
         style={{
           maxWidth: "var(--grid-max-width)",
+          minHeight: "var(--header-height)",
           padding: "var(--space-3) var(--space-6)",
         }}
       >
@@ -92,18 +123,24 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop navigation */}
-        <nav aria-label="Exhibit sections" className="hidden md:flex gap-1">
+        <nav
+          aria-label="Exhibit sections"
+          className="hidden min-w-0 items-center gap-0.5 md:flex lg:gap-1"
+        >
           {NAV_SECTIONS.map(({ id, label }) => (
             <Link
               key={id}
               href={`#${id}`}
               className={cn(
-                "no-underline rounded px-3 py-1.5 transition-colors",
+                "no-underline rounded px-2.5 py-2 transition-colors lg:px-3.5",
                 "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]",
                 activeSection === id &&
                   "text-[var(--color-accent-blue)] font-semibold",
               )}
-              style={{ fontSize: "var(--font-size-caption)" }}
+              style={{
+                fontSize: "clamp(13px, 0.3vw + 11.5px, 15px)",
+                lineHeight: 1.25,
+              }}
             >
               {label}
             </Link>
