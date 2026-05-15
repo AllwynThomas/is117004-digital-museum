@@ -184,7 +184,6 @@ export function SiteHeader() {
               type="button"
               aria-haspopup="menu"
               aria-expanded={isTimelineDropdownOpen ? "true" : "false"}
-              onFocus={() => setIsTimelineDropdownOpen(true)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
