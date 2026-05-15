@@ -9,6 +9,8 @@ Deployed Website: https://allwynthomas.github.io/is117004-digital-museum/
 1. I used 3 sources I found when doing initial research as my baseline. I stored them in `SOURCES.md` with an explanation of the museum's purpose and why the sources are useful.
 2. I used these baseline sources and explanation and asked Perplexity AI to research more sources that could be beneficial and stored them in a structured format in `SOURCES.json`.
 3. I then used the AI Plan mode in VSCode to review `SOURCES.json` and make any changes, either updating or adding sources, that would improve my website.
+4. When expanding on the timeline, I used Google Gemini to search the web for 3 statistics about each of the 7 events in my timeline and also provide a 2 sentence summary with sources.
+5. I added this data to `SOURCES.json` and `exhibit-data.ts`.
 
 ## Spec Driven Development
 
@@ -19,6 +21,7 @@ Deployed Website: https://allwynthomas.github.io/is117004-digital-museum/
 5. Next, the agent did a QA pass to fix any missed issues with the sprint markdown files.
 6. The agent then completed each sprint sequentially following the documentation in the sprint markdown files.
 7. Then the agent did a final QA pass for each sprint's implementations.
+8. When expanding on the timeline, I used the same steps from 1-7 but asked to create a spec for expanding the timeline section into seperate exhibit pages and the agent created 5 detailed sprint documents based on the training expansion spec.
 
 ## Design Style
 
