@@ -684,6 +684,7 @@ export default function Home() {
                   title={entry.title}
                   description={entry.description}
                   variant="dark"
+                  slug={entry.slug}
                 />
               ))}
             </div>
