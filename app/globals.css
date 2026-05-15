@@ -127,6 +127,13 @@ section[id] {
   background: rgba(9, 105, 218, 0.2);
 }
 
+/* ── EventNav link hover/focus styles ── */
+.event-nav-link:hover,
+.event-nav-link:focus {
+  color: var(--color-accent-blue) !important;
+  text-decoration: underline;
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
