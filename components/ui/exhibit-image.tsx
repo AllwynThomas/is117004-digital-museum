@@ -3,15 +3,7 @@
 import Image from "next/image";
 import { useCallback, useSyncExternalStore } from "react";
 import { cn } from "@/lib/utils";
-
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
-function prefixSrc(src: string): string {
-  if (src.startsWith("/") && basePath) {
-    return `${basePath}${src}`;
-  }
-  return src;
-}
+import { prefixAssetPath } from "@/lib/asset-path";
 
 function useReducedMotion(): boolean {
   const subscribe = useCallback((callback: () => void) => {
@@ -64,7 +56,7 @@ export function ExhibitImage({
     <figure className={cn("space-y-[var(--space-4)]", className)}>
       <div className="relative w-full min-w-0">
         <Image
-          src={prefixSrc(imageSrc)}
+          src={prefixAssetPath(imageSrc)}
           alt={alt}
           width={1200}
           height={675}

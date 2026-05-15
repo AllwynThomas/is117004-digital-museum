@@ -9,6 +9,7 @@ import { SourceBadge } from "@/components/ui/source-badge";
 import { DataComparisonCard } from "@/components/ui/data-comparison-card";
 import { TimelineEntry } from "@/components/ui/timeline-entry";
 import { cn } from "@/lib/utils";
+import { prefixAssetPath } from "@/lib/asset-path";
 
 function getSource(id: string) {
   return exhibitData.sources.find((s) => s.id === id);
@@ -204,7 +205,7 @@ export default function Home() {
       >
         <div className="absolute inset-0">
           <Image
-            src="/assets/images/hero_section.png"
+            src={prefixAssetPath("/assets/images/hero_section.png")}
             alt="Inside a nuclear reactor facility, a glowing blue reactor pool surrounds the reactor core beneath an industrial observation deck."
             fill
             priority={true}
@@ -454,7 +455,7 @@ export default function Home() {
             <figure className="m-0">
               <div className="relative aspect-[4/3] overflow-hidden border-b border-[var(--color-surface-rule)] pb-[var(--space-3)]">
                 <Image
-                  src="/assets/images/nuclear_spent_fuel.png"
+                  src={prefixAssetPath("/assets/images/nuclear_spent_fuel.png")}
                   alt="Infographic showing that the total volume of U.S. spent nuclear fuel would fit on a football field roughly 360 feet by 160 feet and 24 feet high."
                   fill
                   sizes="(min-width: 1280px) 34vw, (min-width: 768px) 50vw, 100vw"
